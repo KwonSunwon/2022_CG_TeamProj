@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\object.cpp" />
     <ClCompile Include="src\objReader.cpp" />
     <ClCompile Include="src\shaders.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\light.h" />
     <ClInclude Include="src\object.h" />
     <ClInclude Include="src\objReader.h" />
     <ClInclude Include="src\shaders.h" />

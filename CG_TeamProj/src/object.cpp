@@ -1,5 +1,5 @@
 // Object Class
-
+#pragma once
 #include "object.h"
 
 // Not using an Obj file
