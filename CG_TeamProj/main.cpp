@@ -14,10 +14,9 @@ GLvoid keyboard(unsigned char key, int x, int y);
 GLclampf g_color[4] = {0.5, 0.5, 0.5, 1.0f};
 GLint width = 1200, height = 800;
 
-// shader variables
 GLuint shaderID;
 
-// test object
+// test object /////////////////////////
 class Sphere : public Object
 {
 public:
@@ -27,10 +26,13 @@ public:
 
     void update() override;
 };
+///////////////////////////////////////////
 
 Light light;
 Camera camera;
 Sphere sphere("res/sphere.obj");
+
+///////////////////////////////////////////
 
 GLvoid updateTimer(int value);
 
@@ -75,7 +77,7 @@ GLvoid drawScene()
 
     glUseProgram(shaderID);
 
-    camera.setCamera(shaderID, 0);
+    camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
     light.setLight(shaderID, camera.getEye());
     sphere.render(shaderID);
 
@@ -100,6 +102,8 @@ GLvoid keyboard(unsigned char key, int x, int y)
     }
     glutPostRedisplay();
 }
+
+#pragma region Sphere
 
 void Sphere::render(GLuint shaderProgramID)
 {
@@ -141,10 +145,12 @@ void Sphere::update()
     rotate.y += 0.1;
 }
 
+#pragma endregion
+
 GLvoid updateTimer(int value)
 {
-    sphere.update();
-    light.update();
+    sphere.update(); // 자전
+    light.update();  // 공전
     glutPostRedisplay();
     glutTimerFunc(1000 / 60, updateTimer, 0);
 }
