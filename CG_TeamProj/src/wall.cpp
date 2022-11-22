@@ -1,5 +1,10 @@
-#include "player.h"
-void Player::render(GLuint shaderProgramID)
+#include "wall.h"
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<int> dis(0, 360);
+
+
+void Wall::render(GLuint shaderProgramID)
 {
     glUseProgram(shaderProgramID);
 
@@ -15,12 +20,12 @@ void Player::render(GLuint shaderProgramID)
     glDrawArrays(GL_TRIANGLES, 0, object);
 }
 
-void Player::colorInit()
+void Wall::colorInit()
 {
     for (int i = 0; i < objReader.out_vertices.size(); i++)
     {
-        colors.push_back(0.0f);
-        colors.push_back(1.0f);
+        colors.push_back(0.5f);
+        colors.push_back(0.3f);
         colors.push_back(0.7f);
     }
 
@@ -31,52 +36,21 @@ void Player::colorInit()
     glEnableVertexAttribArray(2);
 }
 
-Player::Player()
+Wall::Wall()
 {
     object = objReader.loadObj("res/sphere.obj");
     setPosY(-1.0f);
+    setPosZ(-5.0f);
+    setRevolutionZ((float)dis(gen));
 }
 
-void Player::update()
+void Wall::update()
 {
-    rotate.y += 0.1;
+ 
     move();
 }
 
-void Player::getEvent(unsigned char key, bool isDown)
+void Wall::move()
 {
-    if (isDown)
-    {
-        switch (key)
-        {
-
-        case 'a':
-            setMoveLeft(true);
-            break;
-        case 'd':
-            setMoveRight(true);
-            break;
-        }
-    }
-    else if (!isDown)
-    {
-        switch (key)
-        {
-
-        case 'a':
-            setMoveLeft(false);
-            break;
-        case 'd':
-            setMoveRight(false);
-            break;
-        }
-    }
-}
-void Player::setMoveLeft(bool in) { isMoveLeft = in; }
-void Player::setMoveRight(bool in) { isMoveRight = in; }
-void Player::move()
-{
-
-    if (isMoveLeft) setRevolutionZ(revolution.z - 1.0f);
-    if (isMoveRight)setRevolutionZ(revolution.z + 1.0f);
+    setPosZ(pos.z + 0.03f);
 }

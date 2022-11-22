@@ -8,6 +8,7 @@
 #include "src/light.h"
 #include "src/player.h"
 #include "src/gameWorld.h"
+#include "src/wall.h"
 
 GLvoid drawScene(GLvoid);
 GLvoid Reshape(int w, int h);
@@ -15,7 +16,7 @@ GLvoid keyboard(unsigned char key, int x, int y);
 GLvoid keyUp(unsigned char, int, int);
 
 GLclampf g_color[4] = {0.5, 0.5, 0.5, 1.0f};
-GLint width = 1200, height = 800;
+GLint width = 1280, height = 1080;
 
 GLuint shaderID;
 
@@ -24,7 +25,8 @@ GLuint shaderID;
 Light light;
 Camera camera;
 Player player;
-
+Wall wall;
+Wall* wallPtr;
 GameWorld gameWorld;
 
 ///////////////////////////////////////////
@@ -55,10 +57,23 @@ void main(int argc, char **argv)
     
     player.initBuffer();
     player.colorInit();
+
+    wall.initBuffer();
+    wall.colorInit();
+
     Object* playerPtr = &player;
-    cout << 1 << endl;
+    for (int i = 0; i < 2; ++i)
+    {
+        cout << i << endl;
+        Wall* tempwall = new Wall();
+        tempwall->initBuffer();
+        tempwall->colorInit();
+        gameWorld.add_object(tempwall);
+    }
+    
     gameWorld.set_shader(shaderID);
     gameWorld.add_object(playerPtr);
+    
     updateTimer(0);
 
     glutKeyboardFunc(keyboard);
@@ -87,7 +102,7 @@ GLvoid drawScene()
 
 GLvoid Reshape(int w, int h)
 {
-    glViewport(0, 0, 800, 800);
+    glViewport(0, 0, 1280, 1080);
 }
 
 GLvoid keyboard(unsigned char key, int x, int y)

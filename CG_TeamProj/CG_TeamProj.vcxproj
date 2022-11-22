@@ -27,6 +27,7 @@
     <ClCompile Include="src\objReader.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\shaders.cpp" />
+    <ClCompile Include="src\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\shaders.h" />
     <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\wall.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader.frag" />
