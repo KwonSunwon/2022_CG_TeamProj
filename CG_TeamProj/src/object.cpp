@@ -46,6 +46,11 @@ void Object::setRotateX(float x) { this->rotate.x = x; }
 void Object::setRotateY(float y) { this->rotate.y = y; }
 void Object::setRotateZ(float z) { this->rotate.z = z; }
 
+void Object::setRevolution(glm::vec3 revolution) { this->revolution = revolution; }
+void Object::setRevolutionX(float x) { this->revolution.x = x; }
+void Object::setRevolutionY(float y) { this->revolution.y = y; }
+void Object::setRevolutionZ(float z) { this->revolution.z = z; }
+
 glm::vec3 Object::getPos() { return pos; }
 glm::vec3 Object::getScale() { return scale; }
 glm::vec3 Object::getRotate() { return rotate; }

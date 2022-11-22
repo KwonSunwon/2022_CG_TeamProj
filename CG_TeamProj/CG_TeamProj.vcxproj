@@ -22,7 +22,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\gameWorld.cpp" />
-    <ClCompile Include="src\gameWorld.h" />
     <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\object.cpp" />
     <ClCompile Include="src\objReader.cpp" />
@@ -31,6 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\gameWorld.h" />
     <ClInclude Include="src\light.h" />
     <ClInclude Include="src\object.h" />
     <ClInclude Include="src\objReader.h" />

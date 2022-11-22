@@ -11,6 +11,7 @@ protected:
     glm::vec3 pos;
     glm::vec3 scale;
     glm::vec3 rotate;
+    glm::vec3 revolution;
 
     GLuint vao;
     GLuint vbo;
@@ -67,6 +68,11 @@ public:
     void setRotateX(float x);
     void setRotateY(float y);
     void setRotateZ(float z);
+
+    void setRevolution(glm::vec3 revolution);
+    void setRevolutionX(float x);
+    void setRevolutionY(float y);
+    void setRevolutionZ(float z);
 
     // Getters
     glm::vec3 getPos();
