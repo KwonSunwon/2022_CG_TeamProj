@@ -1,5 +1,10 @@
-#pragma comment(lib, "glew32.lib")
-#pragma comment(lib, "freeglut.lib ")
+#           if FREEGLUT_LIB_PRAGMAS
+#               ifdef NDEBUG
+#                   pragma comment (lib, "freeglut.lib")
+#               else
+#                   pragma comment (lib, "freeglutd.lib")
+#               endif
+#           endif
 
 #pragma once
 #pragma warning(disable : 4996)
@@ -11,6 +16,7 @@
 #include <gl/glm/glm.hpp>
 #include <gl/glm/ext.hpp>
 #include <gl/glm/gtc/matrix_transform.hpp>
+
 
 #include <iostream>
 #include <stdlib.h>

@@ -6,6 +6,8 @@
 #include "src/camera.h"
 #include "src/object.h"
 #include "src/light.h"
+#include "src/player.h"
+#include "src/gameWorld.h"
 
 GLvoid drawScene(GLvoid);
 GLvoid Reshape(int w, int h);
@@ -16,21 +18,13 @@ GLint width = 1200, height = 800;
 
 GLuint shaderID;
 
-// test object /////////////////////////
-class Sphere : public Object
-{
-public:
-    Sphere(const char *file);
-    void render(GLuint shaderProgramID) override;
-    void colorInit();
 
-    void update() override;
-};
-///////////////////////////////////////////
 
 Light light;
 Camera camera;
-Sphere sphere("res/sphere.obj");
+Player player;
+
+GameWorld gameWorld;
 
 ///////////////////////////////////////////
 
@@ -38,6 +32,7 @@ GLvoid updateTimer(int value);
 
 void main(int argc, char **argv)
 {
+    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100, 100);
@@ -56,16 +51,20 @@ void main(int argc, char **argv)
     glEnable(GL_CULL_FACE);
 
     shaderID = initShader("res/shader.vert", "res/shader.frag");
-
-    sphere.initBuffer();
-    sphere.colorInit();
-
+    
+    player.initBuffer();
+    player.colorInit();
+    Object* playerPtr = &player;
+    cout << 1 << endl;
+    gameWorld.set_shader(shaderID);
+    gameWorld.add_object(playerPtr);
     updateTimer(0);
 
     glutKeyboardFunc(keyboard);
     glutDisplayFunc(drawScene);
     glutReshapeFunc(Reshape);
     glutMainLoop();
+    
 }
 
 GLvoid drawScene()
@@ -79,8 +78,8 @@ GLvoid drawScene()
 
     camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
     light.setLight(shaderID, camera.getEye());
-    sphere.render(shaderID);
-
+    gameWorld.draw_all();
+    //player.render(shaderID);
     glutSwapBuffers();
 }
 
@@ -103,53 +102,10 @@ GLvoid keyboard(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 
-#pragma region Sphere
-
-void Sphere::render(GLuint shaderProgramID)
-{
-    glUseProgram(shaderProgramID);
-
-    model = glm::mat4(1.0);
-    model = glm::translate(model, pos);
-    model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
-
-    glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-
-    glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, object);
-}
-
-void Sphere::colorInit()
-{
-    for (int i = 0; i < objReader.out_vertices.size(); i++)
-    {
-        colors.push_back(0.0f);
-        colors.push_back(1.0f);
-        colors.push_back(0.7f);
-    }
-
-    glGenBuffers(1, &cbo);
-    glBindBuffer(GL_ARRAY_BUFFER, cbo);
-    glBufferData(GL_ARRAY_BUFFER, colors.size() * sizeof(float), &colors[0], GL_STATIC_DRAW);
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-    glEnableVertexAttribArray(2);
-}
-
-Sphere::Sphere(const char *file)
-{
-    object = objReader.loadObj(file);
-}
-
-void Sphere::update()
-{
-    rotate.y += 0.1;
-}
-
-#pragma endregion
 
 GLvoid updateTimer(int value)
 {
-    sphere.update(); // 자전
+    gameWorld.update_all();
     light.update();  // 공전
     glutPostRedisplay();
     glutTimerFunc(1000 / 60, updateTimer, 0);
