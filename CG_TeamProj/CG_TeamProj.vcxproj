@@ -21,9 +21,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\gameWorld.cpp" />
+    <ClCompile Include="src\gameWorld.h" />
     <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\object.cpp" />
     <ClCompile Include="src\objReader.cpp" />
+    <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\shaders.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +34,7 @@
     <ClInclude Include="src\light.h" />
     <ClInclude Include="src\object.h" />
     <ClInclude Include="src\objReader.h" />
+    <ClInclude Include="src\player.h" />
     <ClInclude Include="src\shaders.h" />
     <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
@@ -92,6 +96,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Windows\System32;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt;C:\Windows\SysWOW64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -106,12 +111,13 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>glew32.lib freeglut.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

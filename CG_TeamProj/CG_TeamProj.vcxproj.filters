@@ -33,6 +33,15 @@
     <ClCompile Include="src\light.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="src\player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameWorld.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gameWorld.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\stdafx.h">
@@ -51,6 +60,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="src\light.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="src\player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
