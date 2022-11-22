@@ -4,8 +4,10 @@ void Player::render(GLuint shaderProgramID)
     glUseProgram(shaderProgramID);
 
     model = glm::mat4(1.0);
+    model = glm::rotate(model, glm::radians(revolution.z), glm::vec3(0, 0, 1));
     model = glm::translate(model, pos);
     model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
+    model = glm::scale(model, glm::vec3(0.1, 0.1, 0.1));
 
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
@@ -32,9 +34,48 @@ void Player::colorInit()
 Player::Player()
 {
     object = objReader.loadObj("res/sphere.obj");
+    setPosY(-1.0f);
 }
 
 void Player::update()
 {
     rotate.y += 0.1;
+    move();
+}
+
+void Player::getEvent(unsigned char key, bool isDown)
+{
+    if (isDown)
+    {
+        switch (key)
+        {
+
+        case 'a':
+            setMoveLeft(true);
+            break;
+        case 'd':
+            setMoveRight(true);
+            break;
+        }
+    }
+    else if (!isDown)
+    {
+        switch (key)
+        {
+
+        case 'a':
+            setMoveLeft(false);
+            break;
+        case 'd':
+            setMoveRight(false);
+            break;
+        }
+    }
+}
+void Player::setMoveLeft(bool in) { isMoveLeft = in; }
+void Player::setMoveRight(bool in) { isMoveRight = in; }
+void Player::move()
+{
+    if (isMoveLeft) setRevolutionZ(revolution.z - 1.0f);
+    if (isMoveRight)setRevolutionZ(revolution.z + 1.0f);
 }

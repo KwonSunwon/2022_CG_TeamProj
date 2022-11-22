@@ -12,6 +12,7 @@
 GLvoid drawScene(GLvoid);
 GLvoid Reshape(int w, int h);
 GLvoid keyboard(unsigned char key, int x, int y);
+GLvoid keyUp(unsigned char, int, int);
 
 GLclampf g_color[4] = {0.5, 0.5, 0.5, 1.0f};
 GLint width = 1200, height = 800;
@@ -63,6 +64,7 @@ void main(int argc, char **argv)
     glutKeyboardFunc(keyboard);
     glutDisplayFunc(drawScene);
     glutReshapeFunc(Reshape);
+    glutKeyboardUpFunc(keyUp);
     glutMainLoop();
     
 }
@@ -79,7 +81,7 @@ GLvoid drawScene()
     camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
-    //player.render(shaderID);
+    player.render(shaderID);
     glutSwapBuffers();
 }
 
@@ -90,6 +92,7 @@ GLvoid Reshape(int w, int h)
 
 GLvoid keyboard(unsigned char key, int x, int y)
 {
+    player.getEvent(key, true);
     switch (key)
     {
 
@@ -101,7 +104,12 @@ GLvoid keyboard(unsigned char key, int x, int y)
     }
     glutPostRedisplay();
 }
+GLvoid keyUp(unsigned char key, int x, int y)
+{
+    player.getEvent(key, false);
+    glutPostRedisplay();
 
+}
 
 GLvoid updateTimer(int value)
 {
