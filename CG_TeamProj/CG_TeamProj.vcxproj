@@ -31,6 +31,7 @@
     <ClCompile Include="src\server.cpp" />
     <ClCompile Include="src\shaders.cpp" />
     <ClCompile Include="src\stage.cpp" />
+    <ClCompile Include="src\startStage.cpp" />
     <ClCompile Include="src\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +45,7 @@
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\shaders.h" />
     <ClInclude Include="src\stage.h" />
+    <ClInclude Include="src\startStage.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\wall.h" />
   </ItemGroup>

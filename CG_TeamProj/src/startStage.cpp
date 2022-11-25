@@ -1,5 +1,5 @@
 #pragma once
-#include "mainStage.h"
+#include "startStage.h"
 #include "player.h"
 #include "light.h"
 #include "gameWorld.h"
@@ -13,7 +13,7 @@ extern GLuint shaderID;
 extern Object* playerPtr;
 
 //2dgp의 enter
-void MainStage::init()
+void StartStage::init()
 {
     //fill here
 
@@ -32,7 +32,7 @@ void MainStage::init()
 }
 
 //2dgp의 update
-void MainStage::update()
+void StartStage::update()
 {
     //gameWorld.update_all();
     //light.update();  // 공전
@@ -40,7 +40,7 @@ void MainStage::update()
 }
 
 //2dgp의 이벤트 핸들러
-void MainStage::handleEvent(unsigned char key, bool isDown)
+void StartStage::handleEvent(unsigned char key, bool isDown)
 {
     if (isDown)
     {
@@ -65,11 +65,13 @@ void MainStage::handleEvent(unsigned char key, bool isDown)
 }
 
 //2dgp의 draw
-void MainStage::draw()
+void StartStage::draw()
 {
     camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
 }
-void MainStage::out()
+
+//2dgp의 
+void StartStage::out()
 {}
