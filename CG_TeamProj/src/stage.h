@@ -12,4 +12,6 @@ public:
     virtual void init() {};
     virtual void update() {};
     virtual void handleEvent(unsigned char, bool) {};
+    virtual void draw() {};
+    virtual void out() {};
 } Stage;

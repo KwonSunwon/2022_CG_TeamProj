@@ -11,5 +11,7 @@ public:
     GameManager();
     void gameRun();
     void handleEvent(unsigned char, bool);
+    void update();
+    void draw();
 
 };

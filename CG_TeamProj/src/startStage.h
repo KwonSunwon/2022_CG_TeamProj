@@ -1,11 +1,11 @@
 #pragma once
 #include "stage.h"
 #include "stdafx.h"
-class MainStage : public Stage
+class StartStage : public Stage
 {
 protected:
 
-    
+
 public:
 
     void init();

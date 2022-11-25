@@ -21,13 +21,8 @@ GLint width = 1280, height = 1080;
 
 GLuint shaderID;
 
-
-
 extern Light light;
 extern Camera camera;
-extern Player player;
-//Wall wall;
-//Wall* wallPtr;
 extern GameManager gameManager;
 extern GameWorld gameWorld;
 
@@ -59,9 +54,6 @@ void main(int argc, char **argv)
     
    
     gameManager.gameRun();
-    
-    
-    
     gameWorld.set_shader(shaderID);
     
     updateTimer(0);
@@ -77,15 +69,11 @@ GLvoid drawScene()
 {
     glClearColor(g_color[0], g_color[1], g_color[2], g_color[3]);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
     glUseProgram(shaderID);
 
-    camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
-    light.setLight(shaderID, camera.getEye());
-    gameWorld.draw_all();
-    //player.render(shaderID);
+    gameManager.draw();
+
     glutSwapBuffers();
 }
 
@@ -97,15 +85,6 @@ GLvoid Reshape(int w, int h)
 GLvoid keyboard(unsigned char key, int x, int y)
 {
     gameManager.handleEvent(key, true);
-    switch (key)
-    {
-
-    // Exit
-    case 'Q':
-    case 'q':
-        exit(0);
-        break;
-    }
     glutPostRedisplay();
 }
 GLvoid keyUp(unsigned char key, int x, int y)
@@ -116,8 +95,6 @@ GLvoid keyUp(unsigned char key, int x, int y)
 
 GLvoid updateTimer(int value)
 {
-    gameWorld.update_all();
-    light.update();  // 공전
-    glutPostRedisplay();
+    gameManager.update();
     glutTimerFunc(1000 / 60, updateTimer, 0);
 }
