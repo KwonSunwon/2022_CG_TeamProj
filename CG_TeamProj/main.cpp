@@ -9,6 +9,7 @@
 #include "src/player.h"
 #include "src/gameWorld.h"
 #include "src/wall.h"
+#include "src/gameManager.h"
 
 GLvoid drawScene(GLvoid);
 GLvoid Reshape(int w, int h);
@@ -22,12 +23,13 @@ GLuint shaderID;
 
 
 
-Light light;
-Camera camera;
-Player player;
-Wall wall;
-Wall* wallPtr;
-GameWorld gameWorld;
+extern Light light;
+extern Camera camera;
+extern Player player;
+//Wall wall;
+//Wall* wallPtr;
+extern GameManager gameManager;
+extern GameWorld gameWorld;
 
 ///////////////////////////////////////////
 
@@ -55,27 +57,14 @@ void main(int argc, char **argv)
 
     shaderID = initShader("res/shader.vert", "res/shader.frag");
     
-    player.initBuffer();
-    player.colorInit();
-
-    wall.initBuffer();
-    wall.colorInit();
-
-    Object* playerPtr = &player;
-    for (int i = 0; i < 2; ++i)
-    {
-        cout << i << endl;
-        Wall* tempwall = new Wall();
-        tempwall->initBuffer();
-        tempwall->colorInit();
-        gameWorld.add_object(tempwall);
-    }
+   
+    gameManager.gameRun();
+    
+    
     
     gameWorld.set_shader(shaderID);
-    gameWorld.add_object(playerPtr);
     
     updateTimer(0);
-
     glutKeyboardFunc(keyboard);
     glutDisplayFunc(drawScene);
     glutReshapeFunc(Reshape);
@@ -96,7 +85,7 @@ GLvoid drawScene()
     camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
-    player.render(shaderID);
+    //player.render(shaderID);
     glutSwapBuffers();
 }
 
@@ -107,7 +96,7 @@ GLvoid Reshape(int w, int h)
 
 GLvoid keyboard(unsigned char key, int x, int y)
 {
-    player.getEvent(key, true);
+    gameManager.handleEvent(key, true);
     switch (key)
     {
 
@@ -121,9 +110,8 @@ GLvoid keyboard(unsigned char key, int x, int y)
 }
 GLvoid keyUp(unsigned char key, int x, int y)
 {
-    player.getEvent(key, false);
+    gameManager.handleEvent(key, false);
     glutPostRedisplay();
-
 }
 
 GLvoid updateTimer(int value)

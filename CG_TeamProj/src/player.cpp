@@ -45,32 +45,7 @@ void Player::update()
 
 void Player::getEvent(unsigned char key, bool isDown)
 {
-    if (isDown)
-    {
-        switch (key)
-        {
-
-        case 'a':
-            setMoveLeft(true);
-            break;
-        case 'd':
-            setMoveRight(true);
-            break;
-        }
-    }
-    else if (!isDown)
-    {
-        switch (key)
-        {
-
-        case 'a':
-            setMoveLeft(false);
-            break;
-        case 'd':
-            setMoveRight(false);
-            break;
-        }
-    }
+    
 }
 void Player::setMoveLeft(bool in) { isMoveLeft = in; }
 void Player::setMoveRight(bool in) { isMoveRight = in; }

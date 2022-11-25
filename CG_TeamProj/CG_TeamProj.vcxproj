@@ -21,22 +21,29 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\gameManager.cpp" />
     <ClCompile Include="src\gameWorld.cpp" />
     <ClCompile Include="src\light.cpp" />
+    <ClCompile Include="src\mainStage.cpp" />
     <ClCompile Include="src\object.cpp" />
     <ClCompile Include="src\objReader.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\server.cpp" />
     <ClCompile Include="src\shaders.cpp" />
+    <ClCompile Include="src\stage.cpp" />
     <ClCompile Include="src\wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\gameManager.h" />
     <ClInclude Include="src\gameWorld.h" />
     <ClInclude Include="src\light.h" />
+    <ClInclude Include="src\mainStage.h" />
     <ClInclude Include="src\object.h" />
     <ClInclude Include="src\objReader.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\shaders.h" />
+    <ClInclude Include="src\stage.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\wall.h" />
   </ItemGroup>
