@@ -11,7 +11,7 @@
 
 extern GLint g_width;
 extern GLint g_height;
-
+int idNum = 0;
 GameWorld gameWorld;
 Light light;
 Camera camera(g_width, g_height);

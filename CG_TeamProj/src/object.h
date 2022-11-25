@@ -8,6 +8,7 @@ using namespace std;
 typedef class Object
 {
 protected:
+    int id = 0;
     glm::vec3 pos;
     glm::vec3 scale;
     glm::vec3 rotate;
@@ -79,4 +80,5 @@ public:
     glm::vec3 getScale();
     glm::vec3 getRotate();
     glm::vec3 getRevolution();
+    int getId();
 } Object;

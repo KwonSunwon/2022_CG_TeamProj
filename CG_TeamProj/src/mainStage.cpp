@@ -18,7 +18,7 @@ void MainStage::init()
     player.colorInit();
     gameWorld.add_object(playerPtr);
 
-    for (int i = 0; i < 1; ++i)
+    for (int i = 0; i < 2; ++i)
     {
         cout << i << endl;
         Wall *tempwall = new Wall();

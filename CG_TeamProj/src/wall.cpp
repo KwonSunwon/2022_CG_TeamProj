@@ -1,5 +1,6 @@
 #include "wall.h"
 #include "player.h"
+#include "gameWorld.h"
 
 #ifndef __WALL_STATIC__
 #define __WALL_STATIC__
@@ -12,6 +13,7 @@ vector<glm::vec3> Wall::vertices;
 vector<glm::vec3> Wall::normals;
 #endif
 extern Player player;
+extern GameWorld gameWorld;
 
 Wall::Wall()
 {
@@ -90,11 +92,14 @@ void Wall::update()
 {
     collision();
     move();
+    cout << id << endl;
 }
 
 void Wall::move()
 {
     setPosZ(pos.z + 0.03f);
+    if (pos.z > 0.5)
+        gameWorld.del_object(id);
 }
 
 void Wall::collision()

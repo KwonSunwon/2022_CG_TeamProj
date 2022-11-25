@@ -3,9 +3,12 @@
 #include "object.h"
 
 // Not using an Obj file
+extern int idNum;
 Object::Object()
 {
     initPos();
+    id = idNum;
+    idNum++;
 }
 Object::Object(vector<float> vertices, vector<float> colors)
 {
@@ -55,6 +58,7 @@ glm::vec3 Object::getPos() { return pos; }
 glm::vec3 Object::getScale() { return scale; }
 glm::vec3 Object::getRotate() { return rotate; }
 glm::vec3 Object::getRevolution() { return revolution; }
+int Object::getId() { return id; }
 
 void Object::setModelPos(vector<float> vertices)
 {

@@ -15,6 +15,7 @@ void GameWorld::draw_all()
 	{
 		objects[i]->render(shaderProgramID);
 	}
+
 	
 }
 
@@ -28,5 +29,18 @@ void GameWorld::update_all()
 	for (int i = 0; i < objects.size(); ++i)
 	{
 		objects[i]->update();
+	}
+}
+
+void GameWorld::del_object(int id)
+{
+	for (int i = 0; i < objects.size(); ++i)
+	{
+		if (id == objects[i]->getId())
+		{
+			objects.erase(objects.begin() + i);
+			cout << "delete: " << id << endl;
+			return;
+		}
 	}
 }

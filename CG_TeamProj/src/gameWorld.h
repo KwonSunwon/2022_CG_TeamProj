@@ -14,4 +14,5 @@ public:
     void update_all();
     void add_object(Object*);
     void set_shader(GLuint);
+    void del_object(int);
 };
