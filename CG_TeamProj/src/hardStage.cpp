@@ -1,5 +1,5 @@
-#pragma once
-#include "mainStage.h"
+﻿#pragma once
+#include "hardStage.h"
 #include "player.h"
 #include "light.h"
 #include "gameWorld.h"
@@ -10,10 +10,11 @@ extern Light light;
 extern GameWorld gameWorld;
 extern Camera camera;
 extern GLuint shaderID;
-extern Object *playerPtr;
+extern Object* playerPtr;
 
-void MainStage::init()
+void HardStage::init()
 {
+    cout << "hard Stage" << endl;
     player.initBuffer();
     player.colorInit();
     gameWorld.add_object(playerPtr);
@@ -21,19 +22,19 @@ void MainStage::init()
     for (int i = 0; i < 1; ++i)
     {
         cout << i << endl;
-        Wall *tempwall = new Wall();
+        Wall* tempwall = new Wall();
         tempwall->initBuffer();
         //tempwall->colorInit();
         gameWorld.add_object(tempwall);
     }
 }
-void MainStage::update()
+void HardStage::update()
 {
     gameWorld.update_all();
     light.update(); // ����
     glutPostRedisplay();
 }
-void MainStage::handleEvent(unsigned char key, bool isDown)
+void HardStage::handleEvent(unsigned char key, bool isDown)
 {
     if (isDown)
     {
@@ -66,12 +67,12 @@ void MainStage::handleEvent(unsigned char key, bool isDown)
         }
     }
 }
-void MainStage::draw()
+void HardStage::draw()
 {
     camera.setCamera(shaderID, 0); // 0 = �������� / 1 = ��������
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
 }
-void MainStage::out()
+void HardStage::out()
 {
 }

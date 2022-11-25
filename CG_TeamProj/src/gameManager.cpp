@@ -5,18 +5,20 @@
 #include "wall.h"
 #include "stage.h"
 #include "mainStage.h"
+#include "startStage.h"
 #include <vector>
 extern GameWorld gameWorld;
 extern vector<Stage*> stages;
 extern int nowStage;
 MainStage* mainStage = new MainStage();
+StartStage* startStage = new StartStage();
 GameManager::GameManager()
 {
 }
 
 void GameManager::gameRun()
 {
-    stages.push_back(mainStage);
+    stages.push_back(startStage);
 	cout << ("gameRun");
     stages[nowStage]->init();
 }

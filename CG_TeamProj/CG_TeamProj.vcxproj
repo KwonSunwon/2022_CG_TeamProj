@@ -21,10 +21,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\easyStage.cpp" />
     <ClCompile Include="src\gameManager.cpp" />
     <ClCompile Include="src\gameWorld.cpp" />
+    <ClCompile Include="src\hardStage.cpp" />
     <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\mainStage.cpp" />
+    <ClCompile Include="src\normalStage.cpp" />
     <ClCompile Include="src\object.cpp" />
     <ClCompile Include="src\objReader.cpp" />
     <ClCompile Include="src\player.cpp" />
@@ -36,10 +39,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\easyStage.h" />
     <ClInclude Include="src\gameManager.h" />
     <ClInclude Include="src\gameWorld.h" />
+    <ClInclude Include="src\hardStage.h" />
     <ClInclude Include="src\light.h" />
     <ClInclude Include="src\mainStage.h" />
+    <ClInclude Include="src\normalStage.h" />
     <ClInclude Include="src\object.h" />
     <ClInclude Include="src\objReader.h" />
     <ClInclude Include="src\player.h" />

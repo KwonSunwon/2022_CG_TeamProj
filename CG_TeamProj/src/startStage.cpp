@@ -5,16 +5,29 @@
 #include "gameWorld.h"
 #include "camera.h"
 #include "wall.h"
+#include "easyStage.h"
+#include "normalStage.h"
+#include "hardStage.h"
+
 extern Player player;
 extern Light light;
 extern GameWorld gameWorld;
 extern Camera camera;
 extern GLuint shaderID;
 extern Object* playerPtr;
+extern vector<Stage*> stages;
+extern int nowStage;
+
+
+EasyStage* easyStage = new EasyStage();
+NormalStage* normalStage = new NormalStage();
+HardStage* hardStage = new HardStage();
+
 
 //2dgp¿« enter
 void StartStage::init()
 {
+    cout << "StartStage" << endl;
     //fill here
 
     //player.initBuffer();
@@ -46,6 +59,26 @@ void StartStage::handleEvent(unsigned char key, bool isDown)
     {
         switch (key)
         {
+        case'1':
+            stages.back()->out();
+            nowStage++;
+            stages.push_back(easyStage);
+            stages[nowStage]->init();
+            break;
+        case'2':
+            stages.back()->out();
+            nowStage++;
+            stages.push_back(normalStage);
+            stages[nowStage]->init();
+            break;
+        case'3':
+            stages.back()->out();
+            nowStage++;
+            stages.push_back(hardStage);
+            stages[nowStage]->init();
+            break;
+
+
 
         case 'Q':
         case 'q':
