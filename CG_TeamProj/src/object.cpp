@@ -19,10 +19,10 @@ Object::Object(vector<float> vertices, vector<float> colors, vector<GLubyte> ind
 }
 
 // Using an Obj file
-Object::Object(const char *filename)
-{
-    object = objReader.loadObj(filename);
-}
+// Object::Object(const char *filename)
+// {
+//     object = objReader.loadObj(filename);
+// }
 
 void Object::initPos()
 {
@@ -59,7 +59,7 @@ void Object::setModelPos(vector<float> vertices)
 {
     for (int i = 0; i < vertices.size(); i++)
     {
-        this->vertices.push_back(vertices[i]);
+        this->_vertices.push_back(vertices[i]);
     }
 }
 void Object::setModelColor(vector<float> colors)
@@ -73,7 +73,7 @@ void Object::setModelIndices(vector<GLubyte> indices)
 {
     for (int i = 0; i < indices.size(); i++)
     {
-        this->indices.push_back(indices[i]);
+        this->_indices.push_back(indices[i]);
     }
 }
 
@@ -123,7 +123,7 @@ void Object::_initBuffer()
 
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, _vertices.size() * sizeof(float), &_vertices[0], GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
     glEnableVertexAttribArray(0);
 
@@ -133,10 +133,10 @@ void Object::_initBuffer()
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
     glEnableVertexAttribArray(1);
 
-    if (!indices.empty())
+    if (!_indices.empty())
     {
         glGenBuffers(1, &ebo);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size(), &indices[0], GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.size(), &_indices[0], GL_STATIC_DRAW);
     }
 }

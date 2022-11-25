@@ -32,7 +32,6 @@ GLvoid updateTimer(int value);
 
 void main(int argc, char **argv)
 {
-    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100, 100);
@@ -62,7 +61,6 @@ void main(int argc, char **argv)
     glutReshapeFunc(Reshape);
     glutKeyboardUpFunc(keyUp);
     glutMainLoop();
-    
 }
 
 GLvoid drawScene()

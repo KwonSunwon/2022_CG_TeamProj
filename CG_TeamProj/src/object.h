@@ -21,12 +21,12 @@ protected:
 
     glm::mat4 model;
 
-    vector<float> vertices;
+    vector<float> _vertices;
     vector<float> colors;
-    vector<GLubyte> indices;
+    vector<GLubyte> _indices;
 
     objRead objReader;
-    GLint object;
+    // GLint object;
 
 public:
     Object();
@@ -36,7 +36,7 @@ public:
     Object(vector<float> vertices, vector<float> colors, vector<GLubyte> indices);
 
     // Using an Obj file
-    Object(const char *fileName);
+    // Object(const char *fileName);
 
     virtual void init();
     void initPos();

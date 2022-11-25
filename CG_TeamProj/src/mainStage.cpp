@@ -10,30 +10,30 @@ extern Light light;
 extern GameWorld gameWorld;
 extern Camera camera;
 extern GLuint shaderID;
-extern Object* playerPtr;
+extern Object *playerPtr;
 
-void MainStage::init() 
+void MainStage::init()
 {
     player.initBuffer();
     player.colorInit();
     gameWorld.add_object(playerPtr);
 
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 5; ++i)
     {
         cout << i << endl;
-        Wall* tempwall = new Wall();
-        //tempwall->initBuffer();
-        //tempwall->colorInit();
+        Wall *tempwall = new Wall();
+        tempwall->initBuffer();
+        tempwall->colorInit();
         gameWorld.add_object(tempwall);
     }
 }
-void MainStage::update() 
+void MainStage::update()
 {
     gameWorld.update_all();
-    light.update();  // °øÀü
+    light.update(); // ï¿½ï¿½ï¿½ï¿½
     glutPostRedisplay();
 }
-void MainStage::handleEvent(unsigned char key, bool isDown) 
+void MainStage::handleEvent(unsigned char key, bool isDown)
 {
     if (isDown)
     {
@@ -65,14 +65,13 @@ void MainStage::handleEvent(unsigned char key, bool isDown)
             break;
         }
     }
-
-
 }
 void MainStage::draw()
 {
-    camera.setCamera(shaderID, 0); // 0 = ¿ø±ÙÅõ¿µ / 1 = Á÷°¢Åõ¿µ
+    camera.setCamera(shaderID, 0); // 0 = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / 1 = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
 }
 void MainStage::out()
-{}
+{
+}
