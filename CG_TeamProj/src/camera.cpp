@@ -25,6 +25,19 @@ Camera::Camera()
     top = 1.0f;
 }
 
+Camera::Camera(int width, int height)
+{
+    eye = glm::vec3(0.0f, 0.f, 3.f);
+    target = glm::vec3(0.0f, 0.0f, 0.0f);
+    up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    fovy = 45.0f;
+    aspect = width / height;
+
+    zNear = 0.1f;
+    zFar = 100.0f;
+}
+
 void Camera::setCamera(GLuint shaderProgramID, int type) // 0 = perspective, 1 = ortho
 {
     view = glm::lookAt(eye, target, up);

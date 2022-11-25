@@ -9,9 +9,12 @@
 #include "stage.h"
 #include <vector>
 
+extern GLint g_width;
+extern GLint g_height;
+
 GameWorld gameWorld;
 Light light;
-Camera camera;
+Camera camera(g_width, g_height);
 Player player;
 // Wall wall;
 // Wall *wallPtr;

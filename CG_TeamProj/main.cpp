@@ -17,7 +17,7 @@ GLvoid keyboard(unsigned char key, int x, int y);
 GLvoid keyUp(unsigned char, int, int);
 
 GLclampf g_color[4] = {0.5, 0.5, 0.5, 1.0f};
-GLint width = 1280, height = 1080;
+GLint g_width = 1280, g_height = 1080;
 
 GLuint shaderID;
 
@@ -35,7 +35,7 @@ void main(int argc, char **argv)
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowPosition(100, 100);
-    glutInitWindowSize(width, height);
+    glutInitWindowSize(g_width, g_height);
     glutCreateWindow("Last Project");
     glewExperimental = GL_TRUE;
     if (glewInit() != GLEW_OK)
@@ -50,11 +50,10 @@ void main(int argc, char **argv)
     glEnable(GL_CULL_FACE);
 
     shaderID = initShader("res/shader.vert", "res/shader.frag");
-    
-   
+
     gameManager.gameRun();
     gameWorld.set_shader(shaderID);
-    
+
     updateTimer(0);
     glutKeyboardFunc(keyboard);
     glutDisplayFunc(drawScene);

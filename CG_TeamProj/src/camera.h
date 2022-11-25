@@ -33,6 +33,7 @@ private:
 
 public:
     Camera();
+    Camera(int width, int height);
 
     void setEye(glm::vec3 eye);
     void setTarget(glm::vec3 target);
