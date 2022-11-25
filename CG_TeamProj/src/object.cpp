@@ -54,6 +54,7 @@ void Object::setRevolutionZ(float z) { this->revolution.z = z; }
 glm::vec3 Object::getPos() { return pos; }
 glm::vec3 Object::getScale() { return scale; }
 glm::vec3 Object::getRotate() { return rotate; }
+glm::vec3 Object::getRevolution() { return revolution; }
 
 void Object::setModelPos(vector<float> vertices)
 {

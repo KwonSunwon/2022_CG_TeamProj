@@ -77,6 +77,7 @@ void Player::colorInit()
 
 void Player::update()
 {
+    
     rotate.y += 0.1;
     move();
 }
@@ -93,4 +94,9 @@ void Player::move()
         setRevolutionZ(revolution.z - 1.0f);
     if (isMoveRight)
         setRevolutionZ(revolution.z + 1.0f);
+
+    if (revolution.z < 0)
+        revolution.z + 360.0f;
+    else if (revolution.z > 360)
+        revolution.z - 360.0f;
 }

@@ -37,7 +37,7 @@ public:
 
     // Using an Obj file
     // Object(const char *fileName);
-
+    virtual void collision(Object*) {};
     virtual void init();
     void initPos();
     virtual void initBuffer();
@@ -78,5 +78,5 @@ public:
     glm::vec3 getPos();
     glm::vec3 getScale();
     glm::vec3 getRotate();
-
+    glm::vec3 getRevolution();
 } Object;

@@ -20,6 +20,7 @@ public:
 
     void update() override;
     void move();
+    void collision();
 };
 
 #endif

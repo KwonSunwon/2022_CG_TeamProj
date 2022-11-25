@@ -1,4 +1,5 @@
 #include "wall.h"
+#include "player.h"
 
 #ifndef __WALL_STATIC__
 #define __WALL_STATIC__
@@ -10,6 +11,7 @@ GLint Wall::object = -1;
 vector<glm::vec3> Wall::vertices;
 vector<glm::vec3> Wall::normals;
 #endif
+extern Player player;
 
 Wall::Wall()
 {
@@ -86,11 +88,22 @@ void Wall::colorInit()
 
 void Wall::update()
 {
-
+    collision();
     move();
 }
 
 void Wall::move()
 {
     setPosZ(pos.z + 0.03f);
+}
+
+void Wall::collision()
+{
+    if (abs(pos.z) < 0.3)
+    {
+        if (abs(revolution.z - player.getRevolution().z) < 30)
+        {
+            cout << "collision with Wall" << endl;
+        }
+    }
 }
