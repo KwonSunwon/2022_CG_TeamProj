@@ -52,6 +52,7 @@
     <ClInclude Include="src\shaders.h" />
     <ClInclude Include="src\stage.h" />
     <ClInclude Include="src\startStage.h" />
+    <ClInclude Include="src\stb_image.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\wall.h" />
   </ItemGroup>

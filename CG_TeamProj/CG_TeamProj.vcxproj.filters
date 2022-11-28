@@ -115,6 +115,8 @@
     </ClInclude>
     <ClInclude Include="src\hardStage.h">
       <Filter>헤더 파일</Filter>
+    <ClInclude Include="src\stb_image.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,10 @@
-#           if FREEGLUT_LIB_PRAGMAS
-#               ifdef NDEBUG
-#                   pragma comment (lib, "freeglut.lib")
-#               else
-#                   pragma comment (lib, "freeglutd.lib")
-#               endif
-#           endif
+#if FREEGLUT_LIB_PRAGMAS
+#ifdef NDEBUG
+#pragma comment(lib, "freeglut.lib")
+#else
+#pragma comment(lib, "freeglutd.lib")
+#endif
+#endif
 
 #pragma once
 #pragma warning(disable : 4996)
@@ -17,7 +17,6 @@
 #include <gl/glm/ext.hpp>
 #include <gl/glm/gtc/matrix_transform.hpp>
 
-
 #include <iostream>
 #include <stdlib.h>
 #include <stdlib.h>
@@ -28,6 +27,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <windows.h>
 
 #define _USE_MATH_DEFINES
 #include <math.h>

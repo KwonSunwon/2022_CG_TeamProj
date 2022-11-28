@@ -1,11 +1,14 @@
 #version 330 core
 
-in vec3 fColor;
+out vec4 fragColor;
+
+// in vec3 fColor;
+in vec2 fTexture;
 
 in vec3 fNormal;
 in vec3 fPos;
 
-out vec4 fragColor;
+uniform sampler2D tex;
 
 uniform vec3 lightColor;
 uniform vec3 lightPos;
@@ -28,7 +31,10 @@ void main()
     float specularLight = pow(max(dot(viewDir, reflectDir), 0.0), specularStrength);
     vec3 specular = specularLight * lightColor;
 
-    vec3 result = (ambient + diffuse + specular) * fColor;
-    
-    fragColor = vec4(result , 1.0);
+    // vec3 result = (ambient + diffuse + specular) * fColor;
+    // vec3 result = (ambient + diffuse + specular) * texture(tex, fTexture).rgb;
+    // fragColor = vec4(result, 1.0);
+    // fragColor = texture(tex, fTexture);
+
+    fragColor = vec4(ambient + diffuse + specular, 1.0) * texture(tex, fTexture);
 }

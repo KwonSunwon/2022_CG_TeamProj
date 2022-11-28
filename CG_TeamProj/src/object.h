@@ -19,6 +19,7 @@ protected:
     GLuint nbo;
     GLuint cbo;
     GLuint ebo;
+    GLuint tbo;
 
     glm::mat4 model;
 

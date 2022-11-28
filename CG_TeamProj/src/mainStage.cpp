@@ -15,7 +15,8 @@ extern Object *playerPtr;
 void MainStage::init()
 {
     player.initBuffer();
-    player.colorInit();
+    player.initTexture();
+    // player.colorInit();
     gameWorld.add_object(playerPtr);
 
     for (int i = 0; i < 2; ++i)

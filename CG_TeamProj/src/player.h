@@ -8,6 +8,9 @@ private:
     static GLint object;
     static vector<glm::vec3> vertices;
     static vector<glm::vec3> normals;
+    static vector<glm::vec2> uvs;
+
+    static unsigned int texture;
 
 protected:
     bool isMoveLeft = false;
@@ -17,6 +20,7 @@ public:
     Player();
     void render(GLuint shaderProgramID) override;
     void colorInit();
+    void initTexture();
     void initBuffer() override;
 
     void update() override;
