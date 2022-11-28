@@ -11,6 +11,9 @@ std::uniform_int_distribution<int> dis(0, 360);
 GLint Wall::object = -1;
 vector<glm::vec3> Wall::vertices;
 vector<glm::vec3> Wall::normals;
+vector<glm::vec2> Wall::uvs;
+
+unsigned int Wall::texture = -1;
 #endif
 extern Player player;
 extern GameWorld gameWorld;
@@ -22,13 +25,12 @@ Wall::Wall()
         object = objReader.loadObj("res/sphere.obj");
         vertices.resize(objReader.out_vertices.size());
         normals.resize(objReader.out_normals.size());
+        uvs.resize(objReader.out_uvs.size());
         for (int i = 0; i < objReader.out_vertices.size(); i++)
         {
             vertices[i] = objReader.out_vertices[i];
-        }
-        for (int i = 0; i < objReader.out_normals.size(); i++)
-        {
             normals[i] = objReader.out_normals[i];
+            uvs[i] = objReader.out_uvs[i];
         }
     }
     setPosY(-1.0f);

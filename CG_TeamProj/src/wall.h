@@ -10,6 +10,9 @@ private:
     static GLint object;
     static vector<glm::vec3> vertices;
     static vector<glm::vec3> normals;
+    static vector<glm::vec2> uvs;
+
+    static unsigned int texture;
 
 protected:
 public:
