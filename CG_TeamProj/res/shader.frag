@@ -25,16 +25,16 @@ void main()
     float diffuseLight = max(dot(normalVector, lightDir), 0.0);
     vec3 diffuse = diffuseLight * lightColor;
 
-    int specularStrength = 128;
-    vec3 viewDir = normalize(viewPos - fPos);
-    vec3 reflectDir = reflect(-lightDir, normalVector);
-    float specularLight = pow(max(dot(viewDir, reflectDir), 0.0), specularStrength);
-    vec3 specular = specularLight * lightColor;
+    //int specularStrength = 128;
+    //vec3 viewDir = normalize(viewPos - fPos);
+    //vec3 reflectDir = reflect(-lightDir, normalVector);
+    //float specularLight = pow(max(dot(viewDir, reflectDir), 0.0), specularStrength);
+    //vec3 specular = specularLight * lightColor;
 
     // vec3 result = (ambient + diffuse + specular) * fColor;
     // vec3 result = (ambient + diffuse + specular) * texture(tex, fTexture).rgb;
     // fragColor = vec4(result, 1.0);
     // fragColor = texture(tex, fTexture);
 
-    fragColor = vec4(ambient + diffuse + specular, 1.0) * texture(tex, fTexture);
+    fragColor = vec4(ambient + diffuse, 1.0) * texture(tex, fTexture);
 }
