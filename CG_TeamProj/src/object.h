@@ -41,10 +41,10 @@ public:
     // Using an Obj file
     // Object(const char *fileName);
     virtual void collision(Object *){};
-    virtual void init(){};
+    virtual void init();
     void initPos();
-    virtual void initBuffer(){};
-    virtual void _initBuffer(){};
+    virtual void initBuffer();
+    virtual void _initBuffer();
     virtual void initTexture(){};
 
     void setModelPos(vector<float> vertices);
