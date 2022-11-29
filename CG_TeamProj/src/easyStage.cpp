@@ -17,7 +17,7 @@ void EasyStage::init()
  
     cout << "easy Stage" << endl;
     player.initBuffer();
-    player.colorInit();
+    player.initTexture();
     gameWorld.add_object(playerPtr);
 
     for (int i = 0; i < 10; ++i)
@@ -33,6 +33,7 @@ void EasyStage::update()
 {
     gameWorld.update_all();
     light.update(); // ����
+    camera.setYaw(camera.getYaw() + 1.0f);
     glutPostRedisplay();
 }
 void EasyStage::handleEvent(unsigned char key, bool isDown)

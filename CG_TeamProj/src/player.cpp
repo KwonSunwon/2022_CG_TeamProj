@@ -97,6 +97,7 @@ void Player::render(GLuint shaderProgramID)
     model = glm::rotate(model, glm::radians(revolution.z), glm::vec3(0, 0, 1));
     model = glm::translate(model, pos);
     model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
+    model = glm::rotate(model, glm::radians(rotate.x), glm::vec3(1, 0, 0));
     // model = glm::scale(model, glm::vec3(1, 1, 1));
     model = glm::scale(model, glm::vec3(0.1, 0.1, 0.1));
 
@@ -130,7 +131,7 @@ void Player::colorInit()
 void Player::update()
 {
     
-    rotate.y += 0.1;
+    
     move();
 }
 
@@ -141,11 +142,18 @@ void Player::setMoveLeft(bool in) { isMoveLeft = in; }
 void Player::setMoveRight(bool in) { isMoveRight = in; }
 void Player::move()
 {
-
+    rotate.x -= 3.0;
+    rotate.y = 0;
     if (isMoveLeft)
+    {
         setRevolutionZ(revolution.z - 1.0f);
+        rotate.y = 25;
+    }
     if (isMoveRight)
+    {
         setRevolutionZ(revolution.z + 1.0f);
+        rotate.y = -25;
+    }
 
     if (revolution.z < 0)
         revolution.z + 360.0f;
