@@ -5,6 +5,7 @@
 #include "gameWorld.h"
 #include "camera.h"
 #include "wall.h"
+#include "particle.h"
 extern Player player;
 extern Light light;
 extern GameWorld gameWorld;
@@ -20,7 +21,7 @@ void EasyStage::init()
     player.initTexture();
     gameWorld.add_object(playerPtr);
 
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < 100; ++i)
     {
         cout << i << endl;
         Wall* tempwall = new Wall();
@@ -28,12 +29,17 @@ void EasyStage::init()
         //tempwall->colorInit();
         gameWorld.add_object(tempwall);
     }
+    for (int i = 0; i < 20; ++i)
+    {
+        Particle* tempP = new Particle();
+        tempP->initBuffer();
+        gameWorld.add_object(tempP);
+    }
 }
 void EasyStage::update()
 {
     gameWorld.update_all();
     light.update(); // ����
-    camera.setYaw(camera.getYaw() + 1.0f);
     glutPostRedisplay();
 }
 void EasyStage::handleEvent(unsigned char key, bool isDown)
