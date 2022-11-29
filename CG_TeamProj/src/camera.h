@@ -5,8 +5,7 @@ typedef class Camera
 private:
     float pitch;
     float yaw;
-
-    float angle;
+    float roll;
 
     glm::mat4 viewTransform;
 
@@ -45,11 +44,11 @@ public:
 
     void setPitch(float pitch);
     void setYaw(float yaw);
-    void setAngle(float angle);
+    void setRoll(float roll);
 
     float getPitch();
     float getYaw();
-    float getAngle();
+    float getRoll();
 
     void setFovy(float fovy);
     void setAspect(float aspect);
@@ -65,5 +64,7 @@ public:
     glm::mat4 getView();
     glm::mat4 getProjection();
     glm::mat4 getOrtho();
+
+    void rolling(float angle, int direction);
 
 } Camera;

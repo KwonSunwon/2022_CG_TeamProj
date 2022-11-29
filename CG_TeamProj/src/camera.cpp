@@ -1,13 +1,11 @@
 #include "camera.h"
 
-#pragma region "CameraClass"
-
 // Camera defualt constructor
 Camera::Camera()
 {
     pitch = 0.f;
     yaw = -90.f;
-    angle = 0.f;
+    roll = 0.f;
 
     eye = glm::vec3(0.0f, 0.f, 3.f);
     target = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -36,11 +34,26 @@ Camera::Camera(int width, int height)
 
     zNear = 0.1f;
     zFar = 100.0f;
+
+    pitch = 0.f;
+    yaw = -90.f;
+    roll = 0.f;
 }
 
 void Camera::setCamera(GLuint shaderProgramID, int type) // 0 = perspective, 1 = ortho
 {
-    view = glm::lookAt(eye, target, up);
+    glm::vec3 _target;
+    _target.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    _target.y = sin(glm::radians(pitch));
+    _target.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    target = glm::normalize(_target);
+
+    glm::mat4 rollMat = glm::rotate(glm::mat4(1.0f), glm::radians(roll), target);
+    glm::vec3 _up = glm::vec3(rollMat * glm::vec4(up, 1.0f));
+    up = glm::normalize(_up);
+
+    view = glm::lookAt(eye, eye + target, up);
+
     projection = glm::perspective(fovy, aspect, zNear, zFar);
     ortho = glm::ortho(left, right, bottom, top, zNear, zFar);
 
@@ -55,6 +68,11 @@ void Camera::setCamera(GLuint shaderProgramID, int type) // 0 = perspective, 1 =
     }
 }
 
+void Camera::rolling(float angle, int direction)
+{
+    this->roll += angle * direction;
+}
+
 void Camera::setEye(glm::vec3 eye) { this->eye = eye; }
 void Camera::setTarget(glm::vec3 target) { this->target = target; }
 void Camera::setUp(glm::vec3 up) { this->up = up; }
@@ -65,11 +83,11 @@ glm::vec3 Camera::getUp() { return up; }
 
 void Camera::setPitch(float pitch) { this->pitch = pitch; }
 void Camera::setYaw(float yaw) { this->yaw = yaw; }
-void Camera::setAngle(float angle) { this->angle = angle; }
+void Camera::setRoll(float roll) { this->roll = roll; }
 
 float Camera::getPitch() { return pitch; }
 float Camera::getYaw() { return yaw; }
-float Camera::getAngle() { return angle; }
+float Camera::getRoll() { return roll; }
 
 void Camera::setFovy(float fovy) { this->fovy = fovy; }
 void Camera::setAspect(float aspect) { this->aspect = aspect; }
@@ -84,4 +102,3 @@ void Camera::setTop(float top) { this->top = top; }
 glm::mat4 Camera::getView() { return view; }
 glm::mat4 Camera::getProjection() { return projection; }
 glm::mat4 Camera::getOrtho() { return ortho; }
-#pragma endregion

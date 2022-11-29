@@ -11,11 +11,10 @@ extern Light light;
 extern GameWorld gameWorld;
 extern Camera camera;
 extern GLuint shaderID;
-extern Object* playerPtr;
+extern Object *playerPtr;
 
 void EasyStage::init()
 {
- 
     cout << "easy Stage" << endl;
     player.initBuffer();
     player.initTexture();
@@ -24,14 +23,14 @@ void EasyStage::init()
     for (int i = 0; i < 100; ++i)
     {
         cout << i << endl;
-        Wall* tempwall = new Wall();
+        Wall *tempwall = new Wall();
         tempwall->initBuffer();
-        //tempwall->colorInit();
+        // tempwall->colorInit();
         gameWorld.add_object(tempwall);
     }
     for (int i = 0; i < 20; ++i)
     {
-        Particle* tempP = new Particle();
+        Particle *tempP = new Particle();
         tempP->initBuffer();
         gameWorld.add_object(tempP);
     }
@@ -40,6 +39,10 @@ void EasyStage::update()
 {
     gameWorld.update_all();
     light.update(); // ����
+
+    // Camera rolling test
+    camera.rolling(0.1, -1); // angle, direction
+
     glutPostRedisplay();
 }
 void EasyStage::handleEvent(unsigned char key, bool isDown)
