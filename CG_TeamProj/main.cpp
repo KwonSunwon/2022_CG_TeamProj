@@ -1,6 +1,4 @@
-﻿#pragma once
-
-#include "src/stdafx.h"
+﻿#include "src/stdafx.h"
 #include "src/shaders.h"
 
 #include "src/camera.h"

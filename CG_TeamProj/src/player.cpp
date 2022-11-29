@@ -1,8 +1,5 @@
 #include "player.h"
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
 #ifndef __PLAYER_STATIC__
 #define __PLAYER_STATIC__
 
@@ -25,7 +22,7 @@ Player::Player()
         uvs.resize(objReader.out_uvs.size());
         for (int i = 0; i < objReader.out_vertices.size(); i++)
         {
-            vertices[i] = objReader.out_vertices[i];        
+            vertices[i] = objReader.out_vertices[i];
             normals[i] = objReader.out_normals[i];
             uvs[i] = objReader.out_uvs[i];
         }
@@ -98,15 +95,11 @@ void Player::render(GLuint shaderProgramID)
     model = glm::translate(model, pos);
     model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
     model = glm::rotate(model, glm::radians(rotate.x), glm::vec3(1, 0, 0));
-    // model = glm::scale(model, glm::vec3(1, 1, 1));
     model = glm::scale(model, glm::vec3(0.1, 0.1, 0.1));
 
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
-    // glUniform1i(glGetUniformLocation(shaderProgramID, "tex"), 0);
 
     glBindVertexArray(vao);
-
-    // glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture);
 
     glDrawArrays(GL_TRIANGLES, 0, Player::object);
@@ -130,8 +123,7 @@ void Player::colorInit()
 
 void Player::update()
 {
-    
-    
+
     move();
 }
 

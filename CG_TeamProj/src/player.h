@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __PLAYER_H__
+#define __PLAYER_H__
+
 #include "object.h"
 #include "stdafx.h"
 
@@ -20,7 +22,7 @@ public:
     Player();
     void render(GLuint shaderProgramID) override;
     void colorInit();
-    void initTexture();
+    void initTexture() override;
     void initBuffer() override;
 
     void update() override;
@@ -29,3 +31,5 @@ public:
     void setMoveRight(bool);
     void move();
 };
+
+#endif

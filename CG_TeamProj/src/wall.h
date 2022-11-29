@@ -20,6 +20,7 @@ public:
     void render(GLuint shaderProgramID) override;
     void colorInit();
     void initBuffer() override;
+    void initTexture() override;
 
     void update() override;
     void move();
