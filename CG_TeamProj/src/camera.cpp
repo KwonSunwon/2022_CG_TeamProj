@@ -50,9 +50,9 @@ void Camera::setCamera(GLuint shaderProgramID, int type) // 0 = perspective, 1 =
 
     glm::mat4 rollMat = glm::rotate(glm::mat4(1.0f), glm::radians(roll), target);
     glm::vec3 _up = glm::vec3(rollMat * glm::vec4(up, 1.0f));
-    up = glm::normalize(_up);
+    _up = glm::normalize(_up);
 
-    view = glm::lookAt(eye, eye + target, up);
+    view = glm::lookAt(eye, eye + target, _up);
 
     projection = glm::perspective(fovy, aspect, zNear, zFar);
     ortho = glm::ortho(left, right, bottom, top, zNear, zFar);
