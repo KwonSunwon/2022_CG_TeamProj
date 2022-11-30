@@ -2,6 +2,8 @@
 #include "player.h"
 #include "gameWorld.h"
 
+#include "stb_image.h"
+
 #ifndef __WALL_STATIC__
 #define __WALL_STATIC__
 std::random_device rd;

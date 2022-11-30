@@ -34,7 +34,5 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 #endif

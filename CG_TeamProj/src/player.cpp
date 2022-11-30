@@ -1,5 +1,9 @@
 #include "player.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+
 #ifndef __PLAYER_STATIC__
 #define __PLAYER_STATIC__
 
