@@ -25,7 +25,7 @@ void EasyStage::init()
         cout << i << endl;
         Wall *tempwall = new Wall();
         tempwall->initBuffer();
-        // tempwall->colorInit();
+        tempwall->initTexture();
         gameWorld.add_object(tempwall);
     }
     for (int i = 0; i < 20; ++i)
