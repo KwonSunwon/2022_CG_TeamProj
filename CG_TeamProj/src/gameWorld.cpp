@@ -34,12 +34,13 @@ void GameWorld::update_all()
 
 void GameWorld::del_object(int id)
 {
+	//cout << objects.size();
 	for (int i = 0; i < objects.size(); ++i)
 	{
 		if (id == objects[i]->getId())
 		{
 			objects.erase(objects.begin() + i);
-			cout << "delete: " << id << endl;
+			//cout << "delete: " << id << endl;
 			return;
 		}
 	}

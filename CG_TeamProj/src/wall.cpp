@@ -34,7 +34,7 @@ Wall::Wall()
         }
     }
     setPosY(-1.0f);
-    setPosZ(-5.0f);
+    setPosZ(-(float)dis(gen));
     setRevolutionZ((float)dis(gen));
 }
 
@@ -94,13 +94,12 @@ void Wall::update()
 {
     collision();
     move();
-    cout << id << endl;
 }
 
 void Wall::move()
 {
     setPosZ(pos.z + 0.03f);
-    if (pos.z > 0.5)
+    if (pos.z > 1.5)
         gameWorld.del_object(id);
 }
 
