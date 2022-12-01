@@ -1,3 +1,6 @@
+#ifndef __STDAFX_H__
+#define __STDAFX_H__
+
 #if FREEGLUT_LIB_PRAGMAS
 #ifdef NDEBUG
 #pragma comment(lib, "freeglut.lib")
@@ -6,7 +9,6 @@
 #endif
 #endif
 
-#pragma once
 #pragma warning(disable : 4996)
 
 // OpenGL
@@ -31,3 +33,6 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+
+
+#endif

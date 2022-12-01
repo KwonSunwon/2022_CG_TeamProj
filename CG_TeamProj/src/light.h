@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __LIGHT_H__
+#define __LIGHT_H__
+
 #include "object.h"
 
 class Light : public Object
@@ -15,3 +17,5 @@ public:
     void setLight(GLuint shaderProgramID, glm::vec3 viewPos);
     void update() override;
 };
+
+#endif

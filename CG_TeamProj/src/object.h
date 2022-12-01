@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __OBJECT_H__
+#define __OBJECT_H__
 
 #include "stdafx.h"
 #include "objReader.h"
@@ -39,11 +40,12 @@ public:
 
     // Using an Obj file
     // Object(const char *fileName);
-    virtual void collision(Object*) {};
+    virtual void collision(Object *){};
     virtual void init();
     void initPos();
     virtual void initBuffer();
     virtual void _initBuffer();
+    virtual void initTexture(){};
 
     void setModelPos(vector<float> vertices);
     void setModelColor(vector<float> colors);
@@ -83,3 +85,5 @@ public:
     glm::vec3 getRevolution();
     int getId();
 } Object;
+
+#endif

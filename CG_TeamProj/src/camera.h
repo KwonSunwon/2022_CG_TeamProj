@@ -1,3 +1,6 @@
+#ifndef __CAMERA_H__
+#define __CAMERA_H__
+
 #include "stdafx.h"
 
 typedef class Camera
@@ -68,3 +71,5 @@ public:
     void rolling(float angle, int direction);
 
 } Camera;
+
+#endif

@@ -2,6 +2,8 @@
 #include "player.h"
 #include "gameWorld.h"
 
+#include "stb_image.h"
+
 #ifndef __WALL_STATIC__
 #define __WALL_STATIC__
 std::random_device rd;
@@ -15,6 +17,7 @@ vector<glm::vec2> Wall::uvs;
 
 unsigned int Wall::texture = -1;
 #endif
+
 extern Player player;
 extern GameWorld gameWorld;
 
@@ -22,7 +25,7 @@ Wall::Wall()
 {
     if (object == -1)
     {
-        object = objReader.loadObj("res/sphere.obj");
+        object = objReader.loadObj("res/wall.obj");
         vertices.resize(objReader.out_vertices.size());
         normals.resize(objReader.out_normals.size());
         uvs.resize(objReader.out_uvs.size());
@@ -36,6 +39,31 @@ Wall::Wall()
     setPosY(-1.0f);
     setPosZ(-(float)dis(gen));
     setRevolutionZ((float)dis(gen));
+}
+
+void Wall::initTexture()
+{
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    int width, height, nrChannels;
+    unsigned char *data = stbi_load("res/earth.jpg", &width, &height, &nrChannels, 0);
+
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, 3, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        // glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+    stbi_image_free(data);
 }
 
 void Wall::initBuffer()
@@ -56,6 +84,12 @@ void Wall::initBuffer()
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(1);
+
+    // texture
+    glBindBuffer(GL_ARRAY_BUFFER, tbo);
+    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(2);
 }
 
 void Wall::render(GLuint shaderProgramID)
@@ -71,6 +105,8 @@ void Wall::render(GLuint shaderProgramID)
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
     glBindVertexArray(vao);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
     glDrawArrays(GL_TRIANGLES, 0, object);
 }
 

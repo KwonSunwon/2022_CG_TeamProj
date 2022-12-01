@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __OBJ_READER_H__
+#define __OBJ_READER_H__
+
 #include "stdafx.h"
 
 struct objRead
@@ -7,7 +9,7 @@ struct objRead
     std::vector<glm::vec3> temp_vertices;
     std::vector<glm::vec2> temp_uvs;
     std::vector<glm::vec3> temp_normals;
-    
+
     std::vector<glm::vec3> out_vertices, out_normals;
     std::vector<glm::vec2> out_uvs;
 
@@ -22,3 +24,5 @@ struct objRead
 
     int loadObj(const char *fileName);
 };
+
+#endif
