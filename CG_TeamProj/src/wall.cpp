@@ -144,7 +144,10 @@ void Wall::collision()
 {
     if (abs(pos.z) < 0.3)
     {
-        if (abs(revolution.z - player.getRevolution().z) < 30)
+        cout << revolution.z << ' ' << player.getRevolution().z << endl;
+        if (abs(revolution.z - player.getRevolution().z) < 30
+            || abs(revolution.z + 360.0f - player.getRevolution().z) < 30
+            || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
         {
             cout << "collision with Wall" << endl;
         }
