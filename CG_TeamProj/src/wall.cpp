@@ -71,6 +71,7 @@ void Wall::initBuffer()
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &nbo);
+    glGenBuffers(1, &tbo);
 
     // vertices
     glBindVertexArray(vao);
