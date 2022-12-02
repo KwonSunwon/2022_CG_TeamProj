@@ -152,7 +152,7 @@ void Player::move()
     }
 
     if (revolution.z < 0)
-        revolution.z + 360.0f;
-    else if (revolution.z > 360)
-        revolution.z - 360.0f;
+        revolution.z += 360.0f;
+    if (revolution.z > 360)
+        revolution.z -= 360.0f;
 }
