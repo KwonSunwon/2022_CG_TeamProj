@@ -127,7 +127,7 @@ void Player::colorInit()
 
 void Player::update()
 {
-
+    updateItemTimer();
     move();
 }
 
@@ -136,6 +136,19 @@ void Player::getEvent(unsigned char key, bool isDown)
 }
 void Player::setMoveLeft(bool in) { isMoveLeft = in; }
 void Player::setMoveRight(bool in) { isMoveRight = in; }
+void Player::setProtectedMode(bool in) { isProtectedMode = in; }
+void Player::updateItemTimer()
+{
+    if (isProtectedMode)
+    {
+        protectTime++;
+        if (protectTime == 50)
+        {
+            isProtectedMode = false;
+            protectTime = 0;
+        }
+    }
+}
 void Player::move()
 {
     rotate.x -= 3.0;

@@ -6,9 +6,9 @@
 
 #ifndef __ITEM_STATIC__
 #define __ITEM_STATIC__
-std::random_device rd;
-std::mt19937 gen(rd());
-std::uniform_int_distribution<int> dis(0, 360);
+std::random_device rd3;
+std::mt19937 gen3(rd3());
+std::uniform_int_distribution<int> dis3(0, 360);
 
 GLint Item::object = -1;
 vector<glm::vec3> Item::vertices;
@@ -37,8 +37,8 @@ Item::Item()
         }
     }
     setPosY(-1.0f);
-    setPosZ(-(float)dis(gen));
-    setRevolutionZ((float)dis(gen));
+    setPosZ(-(float)dis3(gen3));
+    setRevolutionZ((float)dis3(gen3));
 }
 
 void Item::initTexture()

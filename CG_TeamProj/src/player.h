@@ -17,6 +17,8 @@ private:
 protected:
     bool isMoveLeft = false;
     bool isMoveRight = false;
+    bool isProtectedMode = false;
+    int protectTime = 0;
 
 public:
     Player();
@@ -29,6 +31,8 @@ public:
     void getEvent(unsigned char key, bool isDown);
     void setMoveLeft(bool);
     void setMoveRight(bool);
+    void setProtectedMode(bool);
+    void updateItemTimer();
     void move();
 };
 
