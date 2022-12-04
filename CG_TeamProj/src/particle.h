@@ -11,13 +11,14 @@ private:
     static vector<glm::vec3> vertices;
     static vector<glm::vec3> normals;
     static vector<glm::vec2> uvs;
+    bool isPlayersParticle=true;
     float dx = 0, dy = 0, dz=0;
 
     static unsigned int texture;
 
 protected:
 public:
-    Particle();
+    Particle(bool);
     void render(GLuint shaderProgramID) override;
     void colorInit();
     void initBuffer() override;

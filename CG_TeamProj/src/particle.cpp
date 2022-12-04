@@ -18,11 +18,11 @@ unsigned int Particle::texture = -1;
 extern Player player;
 extern GameWorld gameWorld;
 
-Particle::Particle()
+Particle::Particle(bool isPlayersParticle)
 {
     if (object == -1)
     {
-        object = objReader.loadObj("res/sphere.obj");
+        object = objReader.loadObj("res/wall.obj");
         vertices.resize(objReader.out_vertices.size());
         normals.resize(objReader.out_normals.size());
         uvs.resize(objReader.out_uvs.size());
@@ -36,10 +36,21 @@ Particle::Particle()
     setPosY(-1.05f);
     setPosX(player.getPos().x);
     setPosZ(player.getPos().z);
-    setRevolutionZ(player.getRevolution().z);
-    setDx((float)(dis1(gen1) - 50) / 10000);
-    setDy((float)(dis1(gen1) - 50) / 25000);
-    setDz((float)(dis1(gen1)) / 500);
+    setRevolutionZ(player.getRevolution().z); 
+    if (isPlayersParticle)
+    {
+        setDx((float)(dis1(gen1) - 50) / 10000);
+        setDy((float)(dis1(gen1) - 50) / 25000);
+        setDz((float)(dis1(gen1)) / 500);
+    }
+    else
+    {
+        setDx((float)(dis1(gen1) - 50) / 1000);
+        setDy((float)(dis1(gen1) - 50) / 1000);
+        setDz((float)(dis1(gen1) - 50) / 1000);
+    }
+
+    this->isPlayersParticle = isPlayersParticle;
 }
 
 void Particle::initBuffer()
@@ -102,15 +113,28 @@ void Particle::update()
 
 void Particle::move()
 {
-    setPosZ(pos.z + dz);
-    //setPosY(pos.y + dy);
-    setPosX(pos.x + dx);
-    if (pos.z > 1.0)
+    if (isPlayersParticle)
     {
-        //setPosY(-1.0f);
-        setPosX(player.getPos().x);
-        setPosZ(player.getPos().z);
-        setRevolutionZ(player.getRevolution().z);
+        setPosZ(pos.z + dz);
+        //setPosY(pos.y + dy);
+        setPosX(pos.x + dx);
+        if (pos.z > 1.0)
+        {
+            //setPosY(-1.0f);
+            setPosX(player.getPos().x);
+            setPosZ(player.getPos().z);
+            setRevolutionZ(player.getRevolution().z);
+        }
+    }
+    else
+    {
+        setPosZ(pos.z + dz);
+        setPosY(pos.y + dy);
+        setPosX(pos.x + dx);
+        if (abs(pos.z) > 3.0 || abs(pos.x)>3.0||abs(pos.y>3.0))
+        {
+            gameWorld.del_object(id);
+        }
     }
         
 }
