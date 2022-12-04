@@ -23,6 +23,7 @@ extern Light light;
 extern Camera camera;
 extern GameManager gameManager;
 extern GameWorld gameWorld;
+extern int gameSpeed;
 
 ///////////////////////////////////////////
 
@@ -91,5 +92,5 @@ GLvoid keyUp(unsigned char key, int x, int y)
 GLvoid updateTimer(int value)
 {
     gameManager.update();
-    glutTimerFunc(1000 / 60, updateTimer, 0);
+    glutTimerFunc(1000 / gameSpeed, updateTimer, 0);
 }
