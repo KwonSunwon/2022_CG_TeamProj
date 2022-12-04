@@ -1,5 +1,6 @@
 #include "player.h"
-
+#include "gameWorld.h"
+#include "particle.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -15,7 +16,8 @@ vector<glm::vec2> Player::uvs;
 unsigned int Player::texture = -1;
 
 #endif
-
+extern GameWorld gameWorld;
+extern int gameSpeed;
 Player::Player()
 {
     if (object == -1)
@@ -137,6 +139,7 @@ void Player::getEvent(unsigned char key, bool isDown)
 void Player::setMoveLeft(bool in) { isMoveLeft = in; }
 void Player::setMoveRight(bool in) { isMoveRight = in; }
 void Player::setProtectedMode(bool in) { isProtectedMode = in; }
+bool Player::getProtectedMode() { return isProtectedMode; }
 void Player::updateItemTimer()
 {
     if (isProtectedMode)
@@ -168,4 +171,16 @@ void Player::move()
         revolution.z += 360.0f;
     if (revolution.z > 360)
         revolution.z -= 360.0f;
+}
+void Player::collision()
+{
+    for (int i = 0; i < 500; ++i)
+    {
+        cout << i << endl;
+        Particle* tempP = new Particle(false);
+        tempP->initBuffer();
+        gameWorld.add_object(tempP);
+    }
+    gameWorld.del_object(id);
+
 }

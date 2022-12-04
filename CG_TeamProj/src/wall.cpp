@@ -1,7 +1,7 @@
 #include "wall.h"
 #include "player.h"
 #include "gameWorld.h"
-
+#include "particle.h"
 #include "stb_image.h"
 
 #ifndef __WALL_STATIC__
@@ -150,6 +150,22 @@ void Wall::collision()
             || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
         {
             cout << "collision with Wall" << endl;
+            if (!player.getProtectedMode())
+            {
+                for (int i = 0; i < 50; ++i)
+                {
+                    cout << i << endl;
+                    Particle* tempP = new Particle(false);
+                    tempP->initBuffer();
+                    gameWorld.add_object(tempP);
+                }
+                gameWorld.del_object(id);
+            }
+            else
+            {
+                player.collision();
+                gameWorld.del_object(id);
+            }
         }
     }
 }

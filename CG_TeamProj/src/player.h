@@ -32,7 +32,9 @@ public:
     void setMoveLeft(bool);
     void setMoveRight(bool);
     void setProtectedMode(bool);
+    bool getProtectedMode();
     void updateItemTimer();
+    void collision();
     void move();
 };
 
