@@ -45,3 +45,5 @@ void GameWorld::del_object(int id)
 		}
 	}
 }
+
+vector<Object*> GameWorld::get_objects() { return objects; };
