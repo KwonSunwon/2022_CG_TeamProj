@@ -30,7 +30,8 @@ void EasyStage::init()
     }
     for (int i = 0; i < 20; ++i)
     {
-        Particle *tempP = new Particle();
+        cout << i << endl;
+        Particle *tempP = new Particle(true);
         tempP->initBuffer();
         gameWorld.add_object(tempP);
     }
@@ -51,7 +52,9 @@ void EasyStage::handleEvent(unsigned char key, bool isDown)
     {
         switch (key)
         {
-
+        case'c':
+            player.setProtectedMode(true);
+            break;
         case 'a':
             player.setMoveLeft(true);
             break;
