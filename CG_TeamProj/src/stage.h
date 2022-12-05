@@ -7,6 +7,7 @@ using namespace std;
 typedef class Stage
 {
 protected:
+    int timer = 0;
 public:
     virtual void init(){};
     virtual void update(){};

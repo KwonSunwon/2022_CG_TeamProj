@@ -44,7 +44,7 @@ void EasyStage::update()
     light.update(); // ����
 
     // Camera rolling test
-    camera.rolling(0.5, -1); // angle, direction
+    //camera.rolling(0.5, -1); // angle, direction
 
     glutPostRedisplay();
 }
