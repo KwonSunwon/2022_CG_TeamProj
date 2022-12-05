@@ -19,14 +19,14 @@ void MainStage::init()
     // player.colorInit();
     gameWorld.add_object(playerPtr);
 
-    for (int i = 0; i < 2; ++i)
-    {
-        cout << i << endl;
-        Wall *tempwall = new Wall();
-        tempwall->initBuffer();
-        //tempwall->colorInit();
-        gameWorld.add_object(tempwall);
-    }
+    //for (int i = 0; i < 2; ++i)
+    //{
+    //    cout << i << endl;
+    //    Wall *tempwall = new Wall();
+    //    tempwall->initBuffer();
+    //    //tempwall->colorInit();
+    //    gameWorld.add_object(tempwall);
+    //}
 }
 void MainStage::update()
 {

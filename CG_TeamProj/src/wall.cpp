@@ -21,7 +21,7 @@ unsigned int Wall::texture = -1;
 extern Player player;
 extern GameWorld gameWorld;
 
-Wall::Wall()
+Wall::Wall(float posZ,float revolutionZ)
 {
     if (object == -1)
     {
@@ -37,8 +37,10 @@ Wall::Wall()
         }
     }
     setPosY(-1.0f);
-    setPosZ(-(float)dis(gen));
-    setRevolutionZ((float)dis(gen));
+    setPosZ(-posZ);
+    setRevolutionZ(revolutionZ);
+    //setPosZ(-(float)dis(gen));
+    //setRevolutionZ((float)dis(gen));
 }
 
 void Wall::initTexture()
@@ -144,7 +146,6 @@ void Wall::collision()
 {
     if (abs(pos.z) < 0.3)
     {
-        cout << revolution.z << ' ' << player.getRevolution().z << endl;
         if (abs(revolution.z - player.getRevolution().z) < 30
             || abs(revolution.z + 360.0f - player.getRevolution().z) < 30
             || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
@@ -154,7 +155,6 @@ void Wall::collision()
             {
                 for (int i = 0; i < 50; ++i)
                 {
-                    cout << i << endl;
                     Particle* tempP = new Particle(false);
                     tempP->initBuffer();
                     gameWorld.add_object(tempP);

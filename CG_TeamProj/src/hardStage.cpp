@@ -19,14 +19,14 @@ void HardStage::init()
     player.colorInit();
     gameWorld.add_object(playerPtr);
 
-    for (int i = 0; i < 1; ++i)
-    {
-        cout << i << endl;
-        Wall* tempwall = new Wall();
-        tempwall->initBuffer();
-        //tempwall->colorInit();
-        gameWorld.add_object(tempwall);
-    }
+    //for (int i = 0; i < 1; ++i)
+    //{
+    //    cout << i << endl;
+    //    Wall* tempwall = new Wall();
+    //    tempwall->initBuffer();
+    //    //tempwall->colorInit();
+    //    gameWorld.add_object(tempwall);
+    //}
 }
 void HardStage::update()
 {

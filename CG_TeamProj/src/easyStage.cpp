@@ -12,6 +12,7 @@ extern GameWorld gameWorld;
 extern Camera camera;
 extern GLuint shaderID;
 extern Object *playerPtr;
+extern Wall wall;
 
 void EasyStage::init()
 {
@@ -20,14 +21,15 @@ void EasyStage::init()
     player.initTexture();
     gameWorld.add_object(playerPtr);
 
-    for (int i = 0; i < 100; ++i)
+    /*for (int i = 0; i < 100; ++i)
     {
         cout << i << endl;
         Wall *tempwall = new Wall();
         tempwall->initBuffer();
         tempwall->initTexture();
         gameWorld.add_object(tempwall);
-    }
+    }*/
+    makePattern(1);
     for (int i = 0; i < 20; ++i)
     {
         cout << i << endl;
@@ -53,7 +55,8 @@ void EasyStage::handleEvent(unsigned char key, bool isDown)
         switch (key)
         {
         case'c':
-            player.setProtectedMode(true);
+            makePattern(1);
+            //player.setProtectedMode(true);
             break;
         case 'a':
             player.setMoveLeft(true);

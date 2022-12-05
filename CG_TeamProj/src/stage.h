@@ -13,6 +13,7 @@ public:
     virtual void handleEvent(unsigned char, bool){};
     virtual void draw(){};
     virtual void out(){};
+    void makePattern(int);
 } Stage;
 
 #endif
