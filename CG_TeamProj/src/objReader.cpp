@@ -200,4 +200,6 @@ int objRead::loadObj(const char *fileName)
             out_normals.push_back(normal);
         }
     }
+
+    return out_vertices.size();
 }
