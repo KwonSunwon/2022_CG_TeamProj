@@ -33,7 +33,7 @@ protected:
 
 public:
     Object();
-
+    virtual ~Object();
     // Not using an Obj file
     Object(vector<float> vertices, vector<float> colors);
     Object(vector<float> vertices, vector<float> colors, vector<GLubyte> indices);

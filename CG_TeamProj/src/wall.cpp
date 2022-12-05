@@ -43,6 +43,14 @@ Wall::Wall(float posZ,float revolutionZ)
     //setRevolutionZ((float)dis(gen));
 }
 
+Wall::~Wall()
+{
+    glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &nbo);
+    glDeleteBuffers(1, &tbo);
+    glDeleteVertexArrays(1, &vao);
+}
+
 void Wall::initTexture()
 {
     glGenTextures(1, &texture);
@@ -108,7 +116,7 @@ void Wall::render(GLuint shaderProgramID)
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
     glBindVertexArray(vao);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, Wall::texture);
 
     glDrawArrays(GL_TRIANGLES, 0, object);
 }
@@ -139,8 +147,13 @@ void Wall::move()
 {
     setPosZ(pos.z + 0.03f);
     if (pos.z > 1.5)
+    {
         gameWorld.del_object(id);
+        delete this;
+    }
 }
+
+
 
 void Wall::collision()
 {

@@ -21,6 +21,9 @@ Object::Object(vector<float> vertices, vector<float> colors, vector<GLubyte> ind
     initModel(vertices, colors, indices);
 }
 
+Object::~Object()
+{
+}
 // Using an Obj file
 // Object::Object(const char *filename)
 // {
