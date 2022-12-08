@@ -192,6 +192,8 @@ void Player::move()
 }
 void Player::collision()
 {
+    if (dieTimer != 0)
+        return;
     for (int i = 0; i < 500; ++i)
     {
         Particle *tempP = new Particle(false);
@@ -202,13 +204,7 @@ void Player::collision()
     dieTimer++;
 
     soundManager.soundPlay(PLAYER_DESTROY);
-    gameWorld.del_object(id);
-    camera.setRoll(0);
-    gameWorld.del_objects();
-    stages.back()->out();
-    nowStage++;
-    stages.push_back(startStage);
-    stages[nowStage]->init();
+    
 }
 void Player::die()
 {

@@ -8,7 +8,6 @@
 #include "easyStage.h"
 #include "normalStage.h"
 #include "hardStage.h"
-
 #include "menu.h"
 
 extern Player player;
