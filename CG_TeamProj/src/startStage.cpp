@@ -97,6 +97,11 @@ void StartStage::handleEvent(unsigned char key, bool isDown)
 
 }
 
+void StartStage::handleEvent(int button, int state, int x, int y)
+{
+    cout << x << " " << y << endl;
+}
+
 //2dgpÀÇ draw
 void StartStage::draw()
 {

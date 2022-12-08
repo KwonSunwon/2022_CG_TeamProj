@@ -45,20 +45,23 @@ void HardStage::update()
     timer++;
     // Camera rolling test
     if(timer%200<100)
-        camera.rolling((timer%100*0.01+0.5), -1); // angle, direction
+        camera.rolling((timer%100*0.01+1.0f), -1); // angle, direction
     else
-        camera.rolling((timer % 100 * 0.01+0.5), 1);
+        camera.rolling((timer % 100 * 0.01+1.0f), 1);
 
     glutPostRedisplay();
 }
+
 void HardStage::handleEvent(unsigned char key, bool isDown)
 {
+    static int count = 4;
     if (isDown)
     {
         switch (key)
         {
         case'c':
-            makePattern(1);
+            makePattern(count);
+            count = (count + 1) % 4;
             //player.setProtectedMode(true);
             break;
         case 'a':

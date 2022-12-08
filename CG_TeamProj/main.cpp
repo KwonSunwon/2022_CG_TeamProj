@@ -13,9 +13,10 @@ GLvoid drawScene(GLvoid);
 GLvoid Reshape(int w, int h);
 GLvoid keyboard(unsigned char key, int x, int y);
 GLvoid keyUp(unsigned char, int, int);
+GLvoid Mouse(int, int, int, int);
 
 GLclampf g_color[4] = {0.5, 0.5, 0.5, 1.0f};
-GLint g_width = 1280, g_height = 1080;
+GLint g_width = 1000, g_height = 1000;
 
 GLuint shaderID;
 
@@ -33,7 +34,7 @@ void main(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100, 100);
+    glutInitWindowPosition(300, 0);
     glutInitWindowSize(g_width, g_height);
     glutCreateWindow("Last Project");
     glewExperimental = GL_TRUE;
@@ -58,6 +59,7 @@ void main(int argc, char **argv)
     glutDisplayFunc(drawScene);
     glutReshapeFunc(Reshape);
     glutKeyboardUpFunc(keyUp);
+    glutMouseFunc(Mouse);
     glutMainLoop();
 }
 
@@ -75,7 +77,7 @@ GLvoid drawScene()
 
 GLvoid Reshape(int w, int h)
 {
-    glViewport(0, 0, 1280, 1080);
+    glViewport(0, 0, 1000, 1000);
 }
 
 GLvoid keyboard(unsigned char key, int x, int y)
@@ -88,7 +90,11 @@ GLvoid keyUp(unsigned char key, int x, int y)
     gameManager.handleEvent(key, false);
     glutPostRedisplay();
 }
-
+GLvoid Mouse(int button, int state, int x, int y)
+{
+    gameManager.handleEvent(button, state, x, y);
+    glutPostRedisplay();
+}
 GLvoid updateTimer(int value)
 {
     gameManager.update();
