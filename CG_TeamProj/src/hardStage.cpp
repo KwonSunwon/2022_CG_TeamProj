@@ -22,7 +22,6 @@ void HardStage::init()
     player.initBuffer();
     player.initTexture();
     gameWorld.add_object(playerPtr);
-    camera.setCamera(shaderID, 1);
     makePattern(100);
     makePattern(0);
     for (int i = 0; i < 20; ++i)
@@ -90,7 +89,7 @@ void HardStage::handleEvent(unsigned char key, bool isDown)
 }
 void HardStage::draw()
 {
-    camera.setCamera(shaderID, 1); // 0 = �������� / 1 = ��������
+    camera.setCamera(shaderID, 0); // 0 = �������� / 1 = ��������
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
 }

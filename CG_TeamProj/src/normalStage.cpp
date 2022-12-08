@@ -14,6 +14,10 @@ extern GLuint shaderID;
 extern Object* playerPtr;
 extern Wall wall;
 
+std::random_device rdStage1;
+std::mt19937 genStage1(rdStage1());
+std::uniform_int_distribution<int> disStage1(0, 4);
+
 void NormalStage::init()
 {
     cout << "normal Stage" << endl;
@@ -42,9 +46,18 @@ void NormalStage::update()
 {
     gameWorld.update_all();
     light.update(); // ����
+    timer++;
+    patterTime++;
 
-    // Camera rolling test
-    camera.rolling(0.5, -1); // angle, direction
+
+    camera.rolling(1.0f, -1); // angle, direction
+ 
+
+    if (patterTime > 250)
+    {
+        patterTime = 0;
+        makePattern(disStage1(genStage1));
+    }
 
     glutPostRedisplay();
 }
