@@ -21,7 +21,7 @@ unsigned int Wall::texture = -1;
 extern Player player;
 extern GameWorld gameWorld;
 
-Wall::Wall(float posZ,float revolutionZ)
+Wall::Wall(float posZ, float revolutionZ)
 {
     if (object == -1)
     {
@@ -44,8 +44,8 @@ Wall::Wall(float posZ,float revolutionZ)
     setPosZ(-posZ);
     setRevolutionZ(revolutionZ);
     setRotate(glm::vec3(dis(gen), dis(gen), dis(gen)));
-    //setPosZ(-(float)dis(gen));
-    //setRevolutionZ((float)dis(gen));
+    // setPosZ(-(float)dis(gen));
+    // setRevolutionZ((float)dis(gen));
 }
 
 Wall::~Wall()
@@ -58,6 +58,9 @@ Wall::~Wall()
 
 void Wall::initTexture()
 {
+    if (texture != -1)
+        return;
+
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -164,22 +167,18 @@ void Wall::move()
     }
 }
 
-
-
 void Wall::collision()
 {
     if (abs(pos.z) < 0.3)
     {
-        if (abs(revolution.z - player.getRevolution().z) < 10
-            || abs(revolution.z + 360.0f - player.getRevolution().z) < 10
-            || abs(revolution.z - 360.0f - player.getRevolution().z) < 10)
+        if (abs(revolution.z - player.getRevolution().z) < 10 || abs(revolution.z + 360.0f - player.getRevolution().z) < 10 || abs(revolution.z - 360.0f - player.getRevolution().z) < 10)
         {
             cout << "collision with Wall" << endl;
             if (player.getProtectedMode())
             {
                 for (int i = 0; i < 50; ++i)
                 {
-                    Particle* tempP = new Particle(false);
+                    Particle *tempP = new Particle(false);
                     tempP->initBuffer();
                     gameWorld.add_object(tempP);
                 }
