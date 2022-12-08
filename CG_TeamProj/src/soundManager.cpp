@@ -6,16 +6,14 @@ SoundManager::SoundManager()
     FMOD::System_Create(&soundSystem);
     soundSystem->init(32, FMOD_INIT_NORMAL, 0);
 
-    soundSystem->createSound("res/sound_test2.wav", FMOD_DEFAULT, 0, &sound[0]);
-    soundSystem->createSound("res/sound_test2.wav", FMOD_DEFAULT, 0, &sound[1]);
-    soundSystem->createSound("res/sound_test2.wav", FMOD_DEFAULT, 0, &sound[2]);
-    soundSystem->createSound("res/sound_test2.wav", FMOD_DEFAULT, 0, &sound[3]);
-    soundSystem->createSound("res/sound_test2.wav", FMOD_DEFAULT, 0, &sound[4]);
+    // soundSystem->createSound("res/bgm.wav", FMOD_LOOP_NORMAL, 0, &sound[BGM]);
+    soundSystem->createSound("res/botton_click.wav", FMOD_DEFAULT, 0, &sound[BUTTON_CLICK]);
+    soundSystem->createSound("res/player_destroy.wav", FMOD_DEFAULT, 0, &sound[PLAYER_DESTROY]);
+    soundSystem->createSound("res/wall_destroy.wav", FMOD_DEFAULT, 0, &sound[WALL_DESTROY]);
+    soundSystem->createSound("res/item_get.wav", FMOD_DEFAULT, 0, &sound[ITEM_DESTROY]);
 }
 
-void SoundManager::soundPlay(int num)
+void SoundManager::soundPlay(int _type)
 {
-    soundSystem->playSound(sound[num], 0, false, &channel);
+    soundSystem->playSound(sound[_type], 0, false, &channel);
 }
-
-
