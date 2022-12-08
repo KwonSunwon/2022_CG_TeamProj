@@ -36,6 +36,7 @@
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\server.cpp" />
     <ClCompile Include="src\shaders.cpp" />
+    <ClCompile Include="src\soundManager.cpp" />
     <ClCompile Include="src\stage.cpp" />
     <ClCompile Include="src\startStage.cpp" />
     <ClCompile Include="src\wall.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="src\particle.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\shaders.h" />
+    <ClInclude Include="src\soundManager.h" />
     <ClInclude Include="src\stage.h" />
     <ClInclude Include="src\startStage.h" />
     <ClInclude Include="src\stb_image.h" />
@@ -137,11 +139,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/api/core/inc;$(ProjectDir)/api/studio/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalOptions>glew32.lib freeglut.lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>$(ProjectDir)api\core\lib;$(ProjectDir)api\studio\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(ProjectDir)api\core\lib\x86\fmod_vc.lib;$(ProjectDir)api\core\lib\x86\fmodL_vc.lib;$(ProjectDir)api\studio\lib\x86\fmodstudio_vc.lib;$(ProjectDir)api\studio\lib\x86\fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

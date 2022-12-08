@@ -1,7 +1,9 @@
 #include "item.h"
 #include "player.h"
 #include "gameWorld.h"
+#include "soundManager.h"
 #include "camera.h"
+
 #include "stb_image.h"
 
 #ifndef __ITEM_STATIC__
@@ -20,6 +22,7 @@ unsigned int Item::texture = -1;
 
 extern Player player;
 extern GameWorld gameWorld;
+extern SoundManager soundManager;
 extern Camera camera;
 
 Item::Item(float posZ, float revolutionZ)
@@ -56,7 +59,7 @@ void Item::initTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("res/bg.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("res/bg.jpg", &width, &height, &nrChannels, 0);
 
     if (data)
     {
@@ -152,6 +155,7 @@ void Item::collision()
         if (abs(revolution.z - player.getRevolution().z) < 30 || abs(revolution.z + 360.0f - player.getRevolution().z) < 30 || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
         {
             cout << "collision with Item" << endl;
+            soundManager.soundPlay(ITEM_DESTROY);
             if (!player.getProtectedMode())
                 camera.rolling(180.0f, 1);
             player.setProtectedMode(true);

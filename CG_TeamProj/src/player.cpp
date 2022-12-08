@@ -7,6 +7,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+#include "soundManager.h"
 
 #ifndef __PLAYER_STATIC__
 #define __PLAYER_STATIC__
@@ -21,10 +22,12 @@ unsigned int Player::texture = -1;
 #endif
 extern GameWorld gameWorld;
 extern int gameSpeed;
+extern SoundManager soundManager;
 extern Camera camera;
 extern vector<Stage*> stages;
 extern int nowStage;
 extern StartStage* startStage;
+
 Player::Player()
 {
     if (object == -1)
@@ -188,15 +191,16 @@ void Player::collision()
 {
     for (int i = 0; i < 500; ++i)
     {
-        Particle* tempP = new Particle(false);
+        Particle *tempP = new Particle(false);
         tempP->initBuffer();
         gameWorld.add_object(tempP);
     }
+    soundManager.soundPlay(PLAYER_DESTROY);
+    gameWorld.del_object(id);
     camera.setRoll(0);
     gameWorld.del_objects();
     stages.back()->out();
     nowStage++;
     stages.push_back(startStage);
     stages[nowStage]->init();
-
 }
