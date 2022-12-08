@@ -43,6 +43,9 @@ Item::Item(float posZ, float revolutionZ)
 
 void Item::initTexture()
 {
+    if (texture != -1)
+        return;
+
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -52,7 +55,7 @@ void Item::initTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("res/Earth.png", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("res/Earth.png", &width, &height, &nrChannels, 0);
 
     if (data)
     {
@@ -77,19 +80,19 @@ void Item::initBuffer()
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
 
     // normals
     glBindBuffer(GL_ARRAY_BUFFER, nbo);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(glm::vec3), &normals[0], GL_STATIC_DRAW);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(1);
 
     // texture
     glBindBuffer(GL_ARRAY_BUFFER, tbo);
     glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(2);
 }
 
@@ -145,9 +148,7 @@ void Item::collision()
     if (abs(pos.z) < 0.3)
     {
         cout << revolution.z << ' ' << player.getRevolution().z << endl;
-        if (abs(revolution.z - player.getRevolution().z) < 30
-            || abs(revolution.z + 360.0f - player.getRevolution().z) < 30
-            || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
+        if (abs(revolution.z - player.getRevolution().z) < 30 || abs(revolution.z + 360.0f - player.getRevolution().z) < 30 || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
         {
             cout << "collision with Item" << endl;
             player.setProtectedMode(true);
