@@ -28,6 +28,7 @@
     <ClCompile Include="src\item.cpp" />
     <ClCompile Include="src\light.cpp" />
     <ClCompile Include="src\mainStage.cpp" />
+    <ClCompile Include="src\menu.cpp" />
     <ClCompile Include="src\normalStage.cpp" />
     <ClCompile Include="src\object.cpp" />
     <ClCompile Include="src\objReader.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="src\item.h" />
     <ClInclude Include="src\light.h" />
     <ClInclude Include="src\mainStage.h" />
+    <ClInclude Include="src\menu.h" />
     <ClInclude Include="src\normalStage.h" />
     <ClInclude Include="src\object.h" />
     <ClInclude Include="src\objReader.h" />

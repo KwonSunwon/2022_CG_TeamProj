@@ -9,76 +9,62 @@
 #include "normalStage.h"
 #include "hardStage.h"
 
+#include "menu.h"
+
 extern Player player;
 extern Light light;
 extern GameWorld gameWorld;
 extern Camera camera;
 extern GLuint shaderID;
-extern Object* playerPtr;
-extern vector<Stage*> stages;
+extern Object *playerPtr;
+extern vector<Stage *> stages;
 extern int nowStage;
 
+EasyStage *easyStage = new EasyStage();
+NormalStage *normalStage = new NormalStage();
+HardStage *hardStage = new HardStage();
 
-EasyStage* easyStage = new EasyStage();
-NormalStage* normalStage = new NormalStage();
-HardStage* hardStage = new HardStage();
+Menu *mainMenu;
 
-
-//2dgp의 enter
 void StartStage::init()
 {
     cout << "StartStage" << endl;
-    //fill here
+    mainMenu = new Menu();
+    mainMenu->initBuffer();
+    mainMenu->initTexture();
 
-    //player.initBuffer();
-    //player.colorInit();
-    //gameWorld.add_object(playerPtr);
-
-    //for (int i = 0; i < 2; ++i)
-    //{
-    //    cout << i << endl;
-    //    Wall* tempwall = new Wall();
-    //    //tempwall->initBuffer();
-    //    //tempwall->colorInit();
-    //    gameWorld.add_object(tempwall);
-    //}
+    light.setAmbientLight(1.0);
 }
 
-//2dgp의 update
 void StartStage::update()
 {
-    //gameWorld.update_all();
-    //light.update();  // 공전
     glutPostRedisplay();
 }
 
-//2dgp의 이벤트 핸들러
 void StartStage::handleEvent(unsigned char key, bool isDown)
 {
     if (isDown)
     {
         switch (key)
         {
-        case'1':
+        case '1':
             stages.back()->out();
             nowStage++;
             stages.push_back(easyStage);
             stages[nowStage]->init();
             break;
-        case'2':
+        case '2':
             stages.back()->out();
             nowStage++;
             stages.push_back(normalStage);
             stages[nowStage]->init();
             break;
-        case'3':
+        case '3':
             stages.back()->out();
             nowStage++;
             stages.push_back(hardStage);
             stages[nowStage]->init();
             break;
-
-
 
         case 'Q':
         case 'q':
@@ -90,26 +76,49 @@ void StartStage::handleEvent(unsigned char key, bool isDown)
     {
         switch (key)
         {
-
         }
     }
-
-
 }
 
 void StartStage::handleEvent(int button, int state, int x, int y)
 {
     cout << x << " " << y << endl;
+    int botton = mainMenu->isClicked(x, y);
+    switch (botton)
+    {
+    case 1:
+        stages.back()->out();
+        nowStage++;
+        stages.push_back(easyStage);
+        stages[nowStage]->init();
+        break;
+    case 2:
+        stages.back()->out();
+        nowStage++;
+        stages.push_back(normalStage);
+        stages[nowStage]->init();
+        break;
+    case 3:
+        stages.back()->out();
+        nowStage++;
+        stages.push_back(hardStage);
+        stages[nowStage]->init();
+        break;
+    case 4:
+        exit(0);
+        break;
+    }
 }
 
-//2dgp의 draw
 void StartStage::draw()
 {
-    camera.setCamera(shaderID, 0); // 0 = 원근투영 / 1 = 직각투영
+    camera.setCamera(shaderID, 0);
     light.setLight(shaderID, camera.getEye());
+    mainMenu->render(shaderID);
     gameWorld.draw_all();
 }
 
-//2dgp의 
 void StartStage::out()
-{}
+{
+    light.setAmbientLight(0.5);
+}

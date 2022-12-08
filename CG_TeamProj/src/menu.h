@@ -3,6 +3,16 @@
 
 #include "object.h"
 
+typedef struct Botton
+{
+    int x;
+    int y;
+    int width;
+    int height;
+
+    Botton(int x, int y, int width, int height) : x(x), y(y), width(width), height(height) {}
+} Botton;
+
 class Menu : public Object
 {
 private:
@@ -11,6 +21,8 @@ private:
     vector<glm::vec2> uvs;
     GLuint texture;
 
+    vector<Botton> bottons;
+
 public:
     Menu();
     void render(GLuint shaderProgramID) override;
@@ -18,7 +30,7 @@ public:
     void initTexture() override;
     void update() override;
 
-    void clicked(int x, int y);
+    int isClicked(int x, int y);
 };
 
 #endif

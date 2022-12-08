@@ -5,12 +5,12 @@
 Menu::Menu()
 {
     const vector<float> &temp = {
-        1, 0, -10, 0, 0, 1, 0, 1,
-        1, 1, -10, 0, 0, 1, 0, 0,
-        0, 1, -10, 0, 0, 1, 1, 0,
-        1, 0, -10, 0, 0, 1, 0, 1,
-        0, 1, -10, 0, 0, 1, 1, 0,
-        0, 0, -10, 0, 0, 1, 1, 1};
+        1, 0, -10, 0, 0, 1, 1, 1,
+        1, 1, -10, 0, 0, 1, 1, 0,
+        0, 1, -10, 0, 0, 1, 0, 0,
+        1, 0, -10, 0, 0, 1, 1, 1,
+        0, 1, -10, 0, 0, 1, 0, 0,
+        0, 0, -10, 0, 0, 1, 0, 1};
 
     for (int i = 0; i < temp.size(); i += 8)
     {
@@ -19,8 +19,16 @@ Menu::Menu()
         uvs.push_back(glm::vec2(temp[i + 6], temp[i + 7]));
     }
     initPos();
-    scale = glm::vec3(1000, 1000, 1);
-    pos = glm::vec3(-500, -500, 0);
+    scale = glm::vec3(50, 50, 1);
+    pos = glm::vec3(-25, -25, -30);
+
+    const int tempBotton[4][4] = {
+        {318, 407, 373, 109},
+        {318, 565, 373, 117},
+        {318, 720, 373, 126},
+        {397, 914, 217, 53}};
+    for (int i = 0; i < 4; i++)
+        bottons.push_back(Botton(tempBotton[i][0], tempBotton[i][1], tempBotton[i][2], tempBotton[i][3]));
 }
 
 void Menu::render(GLuint shaderProgramID)
@@ -87,4 +95,17 @@ void Menu::initBuffer()
 
 void Menu::update()
 {
+}
+
+int Menu::isClicked(int x, int y)
+{
+    if (x > bottons[0].x && x < bottons[0].x + bottons[0].width && y > bottons[0].y && y < bottons[0].y + bottons[0].height)
+        return 1;
+    if (x > bottons[1].x && x < bottons[1].x + bottons[1].width && y > bottons[1].y && y < bottons[1].y + bottons[1].height)
+        return 2;
+    if (x > bottons[2].x && x < bottons[2].x + bottons[2].width && y > bottons[2].y && y < bottons[2].y + bottons[2].height)
+        return 3;
+    if (x > bottons[3].x && x < bottons[3].x + bottons[3].width && y > bottons[3].y && y < bottons[3].y + bottons[3].height)
+        return 4;
+    return 0;
 }
