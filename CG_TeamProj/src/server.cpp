@@ -8,6 +8,7 @@
 #include "object.h"
 #include "stage.h"
 #include "soundManager.h"
+#include "bg.h"
 #include <vector>
 
 extern GLint g_width;
@@ -23,3 +24,4 @@ int nowStage = 0;
 vector<Stage *> stages;
 int gameSpeed = 60;
 SoundManager soundManager;
+BG backGround;
