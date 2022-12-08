@@ -26,7 +26,6 @@ void HardStage::init()
     makePattern(0);
     for (int i = 0; i < 20; ++i)
     {
-        cout << i << endl;
         Particle* tempP = new Particle(true);
         tempP->initBuffer();
         gameWorld.add_object(tempP);

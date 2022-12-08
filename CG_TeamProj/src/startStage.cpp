@@ -9,6 +9,7 @@
 #include "normalStage.h"
 #include "hardStage.h"
 #include "menu.h"
+#include "soundManager.h"
 
 extern Player player;
 extern Light light;
@@ -18,6 +19,7 @@ extern GLuint shaderID;
 extern Object *playerPtr;
 extern vector<Stage *> stages;
 extern int nowStage;
+extern SoundManager soundManager;
 
 EasyStage *easyStage = new EasyStage();
 NormalStage *normalStage = new NormalStage();
@@ -27,11 +29,16 @@ Menu *mainMenu;
 
 void StartStage::init()
 {
+    
     cout << "StartStage" << endl;
     mainMenu = new Menu();
     mainMenu->initBuffer();
     mainMenu->initTexture();
-
+    if (!soundManager.getIsBgmPlay())
+    {
+        soundManager.setIsBgmPlay(true);
+        soundManager.soundPlay(BGM);
+    }
     light.setAmbientLight(1.0);
 }
 
@@ -81,7 +88,6 @@ void StartStage::handleEvent(unsigned char key, bool isDown)
 
 void StartStage::handleEvent(int button, int state, int x, int y)
 {
-    cout << x << " " << y << endl;
     int botton = mainMenu->isClicked(x, y);
     switch (botton)
     {

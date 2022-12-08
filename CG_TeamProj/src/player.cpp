@@ -151,7 +151,12 @@ void Player::getEvent(unsigned char key, bool isDown)
 }
 void Player::setMoveLeft(bool in) { isMoveLeft = in; }
 void Player::setMoveRight(bool in) { isMoveRight = in; }
-void Player::setProtectedMode(bool in) { isProtectedMode = in; }
+void Player::setProtectedMode(bool in) 
+{ 
+    isProtectedMode = in; 
+    if (in)
+        protectTime = 0;
+}
 bool Player::getProtectedMode() { return isProtectedMode; }
 void Player::updateItemTimer()
 {
@@ -213,6 +218,7 @@ void Player::die()
     dieTimer++;
     if (dieTimer > 100)
     {
+        soundManager.soundStop(0);
         dieTimer = 0;
         camera.setRoll(0);
         gameWorld.del_objects();
