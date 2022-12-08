@@ -7,6 +7,7 @@
 class Player : public Object
 {
 private:
+    int dieTimer = 0;
     static GLint object;
     static vector<glm::vec3> vertices;
     static vector<glm::vec3> normals;
@@ -36,6 +37,7 @@ public:
     void updateItemTimer();
     void collision();
     void move();
+    void die();
 };
 
 #endif

@@ -101,6 +101,8 @@ void Player::initBuffer()
 
 void Player::render(GLuint shaderProgramID)
 {
+    if (dieTimer != 0)
+        return;
     glUseProgram(shaderProgramID);
 
     model = glm::mat4(1.0);
@@ -136,6 +138,7 @@ void Player::colorInit()
 
 void Player::update()
 {
+    die();
     updateItemTimer();
     move();
 }
@@ -192,11 +195,23 @@ void Player::collision()
         tempP->initBuffer();
         gameWorld.add_object(tempP);
     }
-    camera.setRoll(0);
-    gameWorld.del_objects();
-    stages.back()->out();
-    nowStage++;
-    stages.push_back(startStage);
-    stages[nowStage]->init();
+    
+    dieTimer++;
 
+}
+void Player::die()
+{
+    if (dieTimer == 0)
+        return;
+    dieTimer++;
+    if (dieTimer > 100)
+    {
+        dieTimer = 0;
+        camera.setRoll(0);
+        gameWorld.del_objects();
+        stages.back()->out();
+        nowStage++;
+        stages.push_back(startStage);
+        stages[nowStage]->init();
+    }
 }
