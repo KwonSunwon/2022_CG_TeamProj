@@ -15,7 +15,5 @@ SoundManager::SoundManager()
 
 void SoundManager::soundPlay(int _type)
 {
-    std::cout << _type << std::endl;
-
     soundSystem->playSound(sound[_type], 0, false, &channel);
 }
