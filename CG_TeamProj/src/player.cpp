@@ -158,12 +158,12 @@ void Player::move()
     rotate.y = 0;
     if (isMoveLeft)
     {
-        setRevolutionZ(revolution.z - 1.0f);
+        setRevolutionZ(revolution.z - 2.0f);
         rotate.y = 25;
     }
     if (isMoveRight)
     {
-        setRevolutionZ(revolution.z + 1.0f);
+        setRevolutionZ(revolution.z + 2.0f);
         rotate.y = -25;
     }
 

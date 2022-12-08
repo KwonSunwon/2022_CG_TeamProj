@@ -36,6 +36,10 @@ Wall::Wall(float posZ,float revolutionZ)
             uvs[i] = objReader.out_uvs[i];
         }
     }
+    if (revolutionZ > 360.0f)
+    {
+        revolutionZ -= 360.0f;
+    }
     setPosY(-1.0f);
     setPosZ(-posZ);
     setRevolutionZ(revolutionZ);
@@ -159,9 +163,9 @@ void Wall::collision()
 {
     if (abs(pos.z) < 0.3)
     {
-        if (abs(revolution.z - player.getRevolution().z) < 30
-            || abs(revolution.z + 360.0f - player.getRevolution().z) < 30
-            || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
+        if (abs(revolution.z - player.getRevolution().z) < 15
+            || abs(revolution.z + 360.0f - player.getRevolution().z) < 15
+            || abs(revolution.z - 360.0f - player.getRevolution().z) < 15)
         {
             cout << "collision with Wall" << endl;
             if (!player.getProtectedMode())
