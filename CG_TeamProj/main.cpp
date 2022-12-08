@@ -30,13 +30,6 @@ extern int gameSpeed;
 
 GLvoid updateTimer(int value);
 
-// sound test
-FMOD::System *soundSystem;
-FMOD::Sound *sound;
-FMOD::Channel *channel;
-
-bool soundFlag = false;
-
 void main(int argc, char **argv)
 {
     glutInit(&argc, argv);
@@ -60,11 +53,6 @@ void main(int argc, char **argv)
 
     gameManager.gameRun();
     gameWorld.set_shader(shaderID);
-
-    // sound test
-    FMOD::System_Create(&soundSystem);
-    soundSystem->init(32, FMOD_INIT_NORMAL, 0);
-    soundSystem->createSound("res/sound_test2.wav", FMOD_DEFAULT, 0, &sound);
 
     updateTimer(0);
     glutKeyboardFunc(keyboard);
@@ -109,12 +97,6 @@ GLvoid Mouse(int button, int state, int x, int y)
 }
 GLvoid updateTimer(int value)
 {
-    if (!soundFlag)
-    {
-        soundSystem->playSound(sound, 0, false, &channel);
-        soundFlag = true;
-    }
-
     gameManager.update();
     glutTimerFunc(1000 / gameSpeed, updateTimer, 0);
 }
