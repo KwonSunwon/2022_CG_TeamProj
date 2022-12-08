@@ -175,7 +175,7 @@ void Wall::collision()
             || abs(revolution.z - 360.0f - player.getRevolution().z) < 10)
         {
             cout << "collision with Wall" << endl;
-            if (!player.getProtectedMode())
+            if (player.getProtectedMode())
             {
                 for (int i = 0; i < 50; ++i)
                 {

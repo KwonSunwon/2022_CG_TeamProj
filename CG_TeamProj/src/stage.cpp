@@ -2,7 +2,9 @@
 #include "stage.h"
 #include "wall.h"
 #include "gameWorld.h"
+#include "item.h"
 Wall* tempwall;
+Item* tempitem;
 extern GameWorld gameWorld;
 
 std::random_device rd4;
@@ -13,6 +15,9 @@ void Stage::makePattern(int patternNum)
 {
     tempwall = new Wall(0,0);
     tempwall->initTexture();
+    tempitem = new Item(0,0);
+    tempitem->initTexture();
+    gameWorld.add_object(tempitem);
     switch (patternNum)
     {
     //격자모양
@@ -20,6 +25,7 @@ void Stage::makePattern(int patternNum)
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 9; ++i)
         {
+            
 
             tempwall = new Wall(startZ, 40.0f * i);
             tempwall->initBuffer();
@@ -38,6 +44,14 @@ void Stage::makePattern(int patternNum)
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 24; ++i)
         {
+            if (i == 0)
+            {
+                tempitem = new Item(startZ + (float)i * 0.3, 15.0f * (i + 12 % 24));
+                tempitem->initBuffer();
+                gameWorld.add_object(tempitem);
+                continue;
+
+            }
 
             tempwall = new Wall(startZ + (float)i * 0.3, 15.0f * (i+12 % 24));
             tempwall->initBuffer();
@@ -50,6 +64,14 @@ void Stage::makePattern(int patternNum)
         cout << "make pattern case:"<<patternNum << endl;
         for (int i = 0; i < 24; ++i)
         {
+            if (i == 0)
+            {
+                tempitem = new Item(startZ + (float)i * 0.3, 15.0f * (i % 24));
+                tempitem->initBuffer();
+                gameWorld.add_object(tempitem);
+                continue;
+
+            }
             
             tempwall = new Wall(startZ + (float)i * 0.3, 15.0f * (i%24));
             tempwall->initBuffer();
@@ -76,6 +98,14 @@ void Stage::makePattern(int patternNum)
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 12; ++i)
         {
+            if (i == 0)
+            {
+                tempitem = new Item(startZ + (float)i * 0.3, 15.0f * (i % 24));
+                tempitem->initBuffer();
+                gameWorld.add_object(tempitem);
+                continue;
+
+            }
 
             tempwall = new Wall(startZ + (float)i * 0.3, 15.0f * (i % 24));
             tempwall->initBuffer();
