@@ -10,6 +10,7 @@ public:
     void init();
     void update();
     void handleEvent(unsigned char, bool);
+    void handleEvent(int, int, int, int);
     void draw();
     void out();
 };

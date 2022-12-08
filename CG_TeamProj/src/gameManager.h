@@ -13,6 +13,7 @@ public:
     GameManager();
     void gameRun();
     void handleEvent(unsigned char, bool);
+    void handleEvent(int button, int state, int x, int y);
     void update();
     void draw();
 };

@@ -17,6 +17,7 @@ private:
 protected:
 public:
     Wall(float, float);
+    ~Wall();
     void render(GLuint shaderProgramID) override;
     void colorInit();
     void initBuffer() override;

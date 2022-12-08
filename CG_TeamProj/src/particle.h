@@ -19,6 +19,7 @@ private:
 protected:
 public:
     Particle(bool);
+    ~Particle();
     void render(GLuint shaderProgramID) override;
     void colorInit();
     void initBuffer() override;

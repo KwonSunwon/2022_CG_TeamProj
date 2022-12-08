@@ -29,6 +29,12 @@ void GameManager::handleEvent(unsigned char key, bool isDown)
     stages[nowStage]->handleEvent(key, isDown);
 }
 
+void GameManager::handleEvent(int button, int state, int x, int y)
+{
+
+    stages[nowStage]->handleEvent(button, state, x, y);
+}
+
 void GameManager::update()
 {
     stages[nowStage]->update();

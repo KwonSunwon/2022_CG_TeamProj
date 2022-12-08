@@ -53,6 +53,13 @@ Particle::Particle(bool isPlayersParticle)
     this->isPlayersParticle = isPlayersParticle;
 }
 
+Particle::~Particle()
+{
+    glDeleteBuffers(1,&vbo);
+    glDeleteBuffers(1, &nbo);
+    glDeleteVertexArrays(1, &vao);
+}
+
 void Particle::initBuffer()
 {
     glGenVertexArrays(1, &vao);
@@ -134,6 +141,8 @@ void Particle::move()
         if (abs(pos.z) > 3.0 || abs(pos.x)>3.0||abs(pos.y>3.0))
         {
             gameWorld.del_object(id);
+            delete this;
+
         }
     }
         

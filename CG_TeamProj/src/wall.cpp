@@ -36,11 +36,23 @@ Wall::Wall(float posZ,float revolutionZ)
             uvs[i] = objReader.out_uvs[i];
         }
     }
+    if (revolutionZ > 360.0f)
+    {
+        revolutionZ -= 360.0f;
+    }
     setPosY(-1.0f);
     setPosZ(-posZ);
     setRevolutionZ(revolutionZ);
     //setPosZ(-(float)dis(gen));
     //setRevolutionZ((float)dis(gen));
+}
+
+Wall::~Wall()
+{
+    glDeleteBuffers(1, &vbo);
+    glDeleteBuffers(1, &nbo);
+    glDeleteBuffers(1, &tbo);
+    glDeleteVertexArrays(1, &vao);
 }
 
 void Wall::initTexture()
@@ -108,7 +120,7 @@ void Wall::render(GLuint shaderProgramID)
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
     glBindVertexArray(vao);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, Wall::texture);
 
     glDrawArrays(GL_TRIANGLES, 0, object);
 }
@@ -139,16 +151,21 @@ void Wall::move()
 {
     setPosZ(pos.z + 0.03f);
     if (pos.z > 1.5)
+    {
         gameWorld.del_object(id);
+        delete this;
+    }
 }
+
+
 
 void Wall::collision()
 {
     if (abs(pos.z) < 0.3)
     {
-        if (abs(revolution.z - player.getRevolution().z) < 30
-            || abs(revolution.z + 360.0f - player.getRevolution().z) < 30
-            || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
+        if (abs(revolution.z - player.getRevolution().z) < 15
+            || abs(revolution.z + 360.0f - player.getRevolution().z) < 15
+            || abs(revolution.z - 360.0f - player.getRevolution().z) < 15)
         {
             cout << "collision with Wall" << endl;
             if (!player.getProtectedMode())
