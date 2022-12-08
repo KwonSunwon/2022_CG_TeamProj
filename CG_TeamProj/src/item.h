@@ -16,7 +16,7 @@ private:
 
 protected:
 public:
-    Item();
+    Item(float,float);
     void render(GLuint shaderProgramID) override;
     void colorInit();
     void initBuffer() override;

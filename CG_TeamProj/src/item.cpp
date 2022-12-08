@@ -21,11 +21,11 @@ unsigned int Item::texture = -1;
 extern Player player;
 extern GameWorld gameWorld;
 
-Item::Item()
+Item::Item(float posZ, float revolutionZ)
 {
     if (object == -1)
     {
-        object = objReader.loadObj("res/item.obj");
+        object = objReader.loadObj("res/wall.obj");
         vertices.resize(objReader.out_vertices.size());
         normals.resize(objReader.out_normals.size());
         uvs.resize(objReader.out_uvs.size());
@@ -37,8 +37,8 @@ Item::Item()
         }
     }
     setPosY(-1.0f);
-    setPosZ(-(float)dis3(gen3));
-    setRevolutionZ((float)dis3(gen3));
+    setPosZ(posZ);
+    setRevolutionZ(revolutionZ);
 }
 
 void Item::initTexture()
@@ -52,7 +52,7 @@ void Item::initTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("res/Jupiter.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("res/Earth.png", &width, &height, &nrChannels, 0);
 
     if (data)
     {
@@ -150,6 +150,7 @@ void Item::collision()
             || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
         {
             cout << "collision with Item" << endl;
+            player.setProtectedMode(true);
         }
     }
 }

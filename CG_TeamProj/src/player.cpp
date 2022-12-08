@@ -145,7 +145,7 @@ void Player::updateItemTimer()
     if (isProtectedMode)
     {
         protectTime++;
-        if (protectTime == 50)
+        if (protectTime == 1000)
         {
             isProtectedMode = false;
             protectTime = 0;
@@ -176,7 +176,6 @@ void Player::collision()
 {
     for (int i = 0; i < 500; ++i)
     {
-        cout << i << endl;
         Particle* tempP = new Particle(false);
         tempP->initBuffer();
         gameWorld.add_object(tempP);
