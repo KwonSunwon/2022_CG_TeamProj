@@ -21,15 +21,7 @@ void EasyStage::init()
     player.initTexture();
     gameWorld.add_object(playerPtr);
 
-    /*for (int i = 0; i < 100; ++i)
-    {
-        cout << i << endl;
-        Wall *tempwall = new Wall();
-        tempwall->initBuffer();
-        tempwall->initTexture();
-        gameWorld.add_object(tempwall);
-    }*/
-    makePattern(1);
+    makePattern(3);
     for (int i = 0; i < 20; ++i)
     {
         cout << i << endl;
@@ -42,9 +34,17 @@ void EasyStage::update()
 {
     gameWorld.update_all();
     light.update(); // ����
+    timer++;
+    patterTime++;
 
     // Camera rolling test
-    //camera.rolling(0.5, -1); // angle, direction
+    
+
+    if (patterTime > 250)
+    {
+        makePattern(3);
+        patterTime = 0;
+    }
 
     glutPostRedisplay();
 }

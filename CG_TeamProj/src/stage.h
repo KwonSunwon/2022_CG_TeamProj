@@ -8,6 +8,7 @@ typedef class Stage
 {
 protected:
     int timer = 0;
+    int patterTime = 0;
 public:
     virtual void init(){};
     virtual void update(){};

@@ -13,23 +13,18 @@ extern Camera camera;
 extern GLuint shaderID;
 extern Object* playerPtr;
 extern Wall wall;
-
+std::random_device rdStage;
+std::mt19937 genStage(rdStage());
+std::uniform_int_distribution<int> disStage(0, 4);
 void HardStage::init()
 {
     cout << "hard Stage" << endl;
     player.initBuffer();
     player.initTexture();
     gameWorld.add_object(playerPtr);
-
-    /*for (int i = 0; i < 100; ++i)
-    {
-        cout << i << endl;
-        Wall *tempwall = new Wall();
-        tempwall->initBuffer();
-        tempwall->initTexture();
-        gameWorld.add_object(tempwall);
-    }*/
-    makePattern(1);
+    camera.setCamera(shaderID, 1);
+    makePattern(100);
+    makePattern(0);
     for (int i = 0; i < 20; ++i)
     {
         cout << i << endl;
@@ -43,27 +38,30 @@ void HardStage::update()
     gameWorld.update_all();
     light.update(); // ����
     timer++;
+    patterTime++;
+
     // Camera rolling test
-    if(timer%200<100)
-        camera.rolling((timer%100*0.01+1.0f), -1); // angle, direction
+    if(timer%300<150)
+        camera.rolling((timer%150*0.01+1.0f), -1); // angle, direction
     else
-        camera.rolling((timer % 100 * 0.01+1.0f), 1);
+        camera.rolling((timer % 150 * 0.01+1.0f), 1);
+
+    if (patterTime > 250)
+    {
+        patterTime = 0;
+        makePattern(disStage(genStage));
+    }
 
     glutPostRedisplay();
 }
 
 void HardStage::handleEvent(unsigned char key, bool isDown)
 {
-    static int count = 4;
+    
     if (isDown)
     {
         switch (key)
         {
-        case'c':
-            makePattern(count);
-            count = (count + 1) % 4;
-            //player.setProtectedMode(true);
-            break;
         case 'a':
             player.setMoveLeft(true);
             break;
@@ -92,7 +90,7 @@ void HardStage::handleEvent(unsigned char key, bool isDown)
 }
 void HardStage::draw()
 {
-    camera.setCamera(shaderID, 0); // 0 = �������� / 1 = ��������
+    camera.setCamera(shaderID, 1); // 0 = �������� / 1 = ��������
     light.setLight(shaderID, camera.getEye());
     gameWorld.draw_all();
 }

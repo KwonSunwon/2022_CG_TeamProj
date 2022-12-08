@@ -43,6 +43,7 @@ Wall::Wall(float posZ,float revolutionZ)
     setPosY(-1.0f);
     setPosZ(-posZ);
     setRevolutionZ(revolutionZ);
+    setRotate(glm::vec3(dis(gen), dis(gen), dis(gen)));
     //setPosZ(-(float)dis(gen));
     //setRevolutionZ((float)dis(gen));
 }
@@ -115,6 +116,8 @@ void Wall::render(GLuint shaderProgramID)
     model = glm::rotate(model, glm::radians(revolution.z), glm::vec3(0, 0, 1));
     model = glm::translate(model, pos);
     model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
+    model = glm::rotate(model, glm::radians(rotate.x), glm::vec3(1, 0, 0));
+    model = glm::rotate(model, glm::radians(rotate.z), glm::vec3(0, 0, 1));
     model = glm::scale(model, glm::vec3(0.1, 0.1, 0.1));
 
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -149,6 +152,10 @@ void Wall::update()
 
 void Wall::move()
 {
+
+    rotate.x += 1;
+    rotate.y += 1;
+    rotate.z += 1;
     setPosZ(pos.z + 0.03f);
     if (pos.z > 1.5)
     {
@@ -163,9 +170,9 @@ void Wall::collision()
 {
     if (abs(pos.z) < 0.3)
     {
-        if (abs(revolution.z - player.getRevolution().z) < 15
-            || abs(revolution.z + 360.0f - player.getRevolution().z) < 15
-            || abs(revolution.z - 360.0f - player.getRevolution().z) < 15)
+        if (abs(revolution.z - player.getRevolution().z) < 10
+            || abs(revolution.z + 360.0f - player.getRevolution().z) < 10
+            || abs(revolution.z - 360.0f - player.getRevolution().z) < 10)
         {
             cout << "collision with Wall" << endl;
             if (!player.getProtectedMode())
