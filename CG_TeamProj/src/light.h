@@ -6,9 +6,8 @@
 class Light : public Object
 {
 private:
-    glm::vec3 ambientLight;
+    float ambientLight;
     int shininess;
-
     float angle;
 
 public:
@@ -16,6 +15,8 @@ public:
 
     void setLight(GLuint shaderProgramID, glm::vec3 viewPos);
     void update() override;
+
+    void setAmbientLight(float ambientLight);
 };
 
 #endif
