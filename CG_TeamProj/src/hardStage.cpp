@@ -6,6 +6,8 @@
 #include "camera.h"
 #include "wall.h"
 #include "particle.h"
+#include "bg.h"
+
 extern Player player;
 extern Light light;
 extern GameWorld gameWorld;
@@ -13,12 +15,19 @@ extern Camera camera;
 extern GLuint shaderID;
 extern Object* playerPtr;
 extern Wall wall;
+extern BG backGround;
+
 std::random_device rdStage;
 std::mt19937 genStage(rdStage());
 std::uniform_int_distribution<int> disStage(0, 4);
 void HardStage::init()
 {
     cout << "hard Stage" << endl;
+
+    backGround.initBuffer();
+    backGround.initTexture();
+    gameWorld.add_object(&backGround);
+    
     player.initBuffer();
     player.initTexture();
     gameWorld.add_object(playerPtr);

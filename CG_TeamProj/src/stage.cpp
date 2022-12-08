@@ -3,6 +3,8 @@
 #include "wall.h"
 #include "gameWorld.h"
 #include "item.h"
+#include "bg.h"
+
 Wall *tempwall;
 Item *tempitem;
 extern GameWorld gameWorld;
@@ -10,7 +12,7 @@ extern GameWorld gameWorld;
 std::random_device rd4;
 std::mt19937 gen4(rd4());
 std::uniform_int_distribution<int> dis4(0, 360);
-float startZ = 10.0f;
+float startZ = 18.0f;
 void Stage::makePattern(int patternNum)
 {
     tempwall = new Wall(0, 0);

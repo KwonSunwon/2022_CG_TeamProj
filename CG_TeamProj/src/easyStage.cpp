@@ -6,6 +6,8 @@
 #include "camera.h"
 #include "wall.h"
 #include "particle.h"
+#include "bg.h"
+
 extern Player player;
 extern Light light;
 extern GameWorld gameWorld;
@@ -13,10 +15,16 @@ extern Camera camera;
 extern GLuint shaderID;
 extern Object *playerPtr;
 extern Wall wall;
+extern BG backGround;
 
 void EasyStage::init()
 {
     cout << "easy Stage" << endl;
+    
+    backGround.initBuffer();
+    backGround.initTexture();
+    gameWorld.add_object(&backGround);
+
     player.initBuffer();
     player.initTexture();
     gameWorld.add_object(playerPtr);
