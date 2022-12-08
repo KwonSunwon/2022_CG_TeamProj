@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# FMOD api directory
+!/CG_TeamProj/api/core/lib/*
+!/CG_TeamProj/api/studio/lib/*
+
 # User-specific files
 *.rsuser
 *.suo

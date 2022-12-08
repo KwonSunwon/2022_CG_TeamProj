@@ -3,6 +3,7 @@
 #include "gameWorld.h"
 #include "particle.h"
 #include "stb_image.h"
+#include "soundManager.h"
 
 #ifndef __WALL_STATIC__
 #define __WALL_STATIC__
@@ -20,6 +21,7 @@ unsigned int Wall::texture = -1;
 
 extern Player player;
 extern GameWorld gameWorld;
+extern SoundManager soundManager;
 
 Wall::Wall(float posZ, float revolutionZ)
 {
@@ -176,6 +178,7 @@ void Wall::collision()
             cout << "collision with Wall" << endl;
             if (player.getProtectedMode())
             {
+                soundManager.soundPlay(WALL_DESTROY);
                 for (int i = 0; i < 50; ++i)
                 {
                     Particle *tempP = new Particle(false);

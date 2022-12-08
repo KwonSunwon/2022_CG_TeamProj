@@ -2,6 +2,10 @@
 
 #include "stb_image.h"
 
+#include "soundManager.h"
+
+extern SoundManager soundManager;
+
 Menu::Menu()
 {
     const vector<float> &temp = {
@@ -99,13 +103,16 @@ void Menu::update()
 
 int Menu::isClicked(int x, int y)
 {
-    if (x > bottons[0].x && x < bottons[0].x + bottons[0].width && y > bottons[0].y && y < bottons[0].y + bottons[0].height)
-        return 1;
-    if (x > bottons[1].x && x < bottons[1].x + bottons[1].width && y > bottons[1].y && y < bottons[1].y + bottons[1].height)
-        return 2;
-    if (x > bottons[2].x && x < bottons[2].x + bottons[2].width && y > bottons[2].y && y < bottons[2].y + bottons[2].height)
-        return 3;
-    if (x > bottons[3].x && x < bottons[3].x + bottons[3].width && y > bottons[3].y && y < bottons[3].y + bottons[3].height)
-        return 4;
-    return 0;
+    int type = 0;
+    for (int i = 0; i < 4; i++)
+        if (x > bottons[i].x && x < bottons[i].x + bottons[i].width && y > bottons[i].y && y < bottons[i].y + bottons[i].height)
+        {
+            type = i + 1;
+            break;
+        }
+
+    if (type)
+        soundManager.soundPlay(BUTTON_CLICK);
+
+    return type;
 }

@@ -1,6 +1,13 @@
 #ifndef __STDAFX_H__
 #define __STDAFX_H__
 
+#define BGM 0
+#define BUTTON_CLICK 1
+#define PLAYER_DESTROY 2
+#define WALL_DESTROY 3
+#define ITEM_DESTROY 4
+
+
 #if FREEGLUT_LIB_PRAGMAS
 #ifdef NDEBUG
 #pragma comment(lib, "freeglut.lib")
@@ -36,5 +43,7 @@
 
 #pragma comment(lib, "winmm.lib")
 #include <mmsystem.h>
+
+#include <fmod.hpp>
 
 #endif

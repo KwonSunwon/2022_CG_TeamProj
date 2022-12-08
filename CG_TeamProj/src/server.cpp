@@ -7,6 +7,7 @@
 #include "gameManager.h"
 #include "object.h"
 #include "stage.h"
+#include "soundManager.h"
 #include <vector>
 
 extern GLint g_width;
@@ -21,3 +22,4 @@ Object *playerPtr = &player;
 int nowStage = 0;
 vector<Stage *> stages;
 int gameSpeed = 60;
+SoundManager soundManager;
