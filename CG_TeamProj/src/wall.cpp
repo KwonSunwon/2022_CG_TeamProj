@@ -162,7 +162,7 @@ void Wall::move()
     rotate.y += 1;
     rotate.z += 1;
     setPosZ(pos.z + 0.03f);
-    if (pos.z > 1.5)
+    if (pos.z > 3.0)
     {
         gameWorld.del_object(id);
         delete this;

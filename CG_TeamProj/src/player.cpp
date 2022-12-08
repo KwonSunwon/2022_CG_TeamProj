@@ -1,6 +1,9 @@
 #include "player.h"
 #include "gameWorld.h"
 #include "particle.h"
+#include "camera.h"
+#include "stage.h"
+#include "startStage.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
@@ -20,6 +23,10 @@ unsigned int Player::texture = -1;
 extern GameWorld gameWorld;
 extern int gameSpeed;
 extern SoundManager soundManager;
+extern Camera camera;
+extern vector<Stage*> stages;
+extern int nowStage;
+extern StartStage* startStage;
 
 Player::Player()
 {
@@ -104,7 +111,7 @@ void Player::render(GLuint shaderProgramID)
     model = glm::translate(model, pos);
     model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
     model = glm::rotate(model, glm::radians(rotate.x), glm::vec3(1, 0, 0));
-    model = glm::scale(model, glm::vec3(0.01, 0.01, 0.01));
+    model = glm::scale(model, glm::vec3(0.015, 0.015, 0.015));
 
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
@@ -148,10 +155,15 @@ void Player::updateItemTimer()
     if (isProtectedMode)
     {
         protectTime++;
-        if (protectTime == 1000)
+        if (protectTime == 260)
         {
             isProtectedMode = false;
             protectTime = 0;
+            
+            
+            camera.rolling(180.0f, 1);
+            camera.setFovy(45.0f);
+            camera.setEye(glm::vec3(0, 0, 3.0));
         }
     }
 }
@@ -185,4 +197,10 @@ void Player::collision()
     }
     soundManager.soundPlay(PLAYER_DESTROY);
     gameWorld.del_object(id);
+    camera.setRoll(0);
+    gameWorld.del_objects();
+    stages.back()->out();
+    nowStage++;
+    stages.push_back(startStage);
+    stages[nowStage]->init();
 }

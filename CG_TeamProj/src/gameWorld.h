@@ -17,6 +17,7 @@ public:
     void add_object(Object *);
     void set_shader(GLuint);
     void del_object(int);
+    void del_objects();
     vector<Object*> get_objects();
 };
 

@@ -46,4 +46,9 @@ void GameWorld::del_object(int id)
 	}
 }
 
+void GameWorld::del_objects()
+{
+	objects.clear();
+}
+
 vector<Object*> GameWorld::get_objects() { return objects; };
