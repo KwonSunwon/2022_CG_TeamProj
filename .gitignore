@@ -7,6 +7,8 @@
 !/CG_TeamProj/api/core/lib/*
 !/CG_TeamProj/api/studio/lib/*
 
+!/CG_TeamProj/Debug/*.dll
+
 # User-specific files
 *.rsuser
 *.suo
