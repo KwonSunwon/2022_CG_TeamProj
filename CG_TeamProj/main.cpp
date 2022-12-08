@@ -54,6 +54,8 @@ void main(int argc, char **argv)
     gameManager.gameRun();
     gameWorld.set_shader(shaderID);
 
+    PlaySound(TEXT("res/sound/bgm.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+
     updateTimer(0);
     glutKeyboardFunc(keyboard);
     glutDisplayFunc(drawScene);
