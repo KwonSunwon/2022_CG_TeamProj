@@ -13,11 +13,10 @@ uniform sampler2D tex;
 uniform vec3 lightColor;
 uniform vec3 lightPos;
 uniform vec3 viewPos;
-
+uniform float ambientLight;
 
 void main()
 {
-    float ambientLight = 0.5;
     vec3 ambient = ambientLight * lightColor;
 
     vec3 normalVector = normalize(fNormal);
