@@ -111,7 +111,7 @@ int Menu::isClicked(int x, int y)
             break;
         }
 
-    if (!type)
+    if (type)
         soundManager.soundPlay(BUTTON_CLICK);
 
     return type;
