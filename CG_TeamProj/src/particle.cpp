@@ -125,7 +125,7 @@ void Particle::move()
         setPosZ(pos.z + dz);
         //setPosY(pos.y + dy);
         setPosX(pos.x + dx);
-        if (pos.z > 1.0)
+        if (pos.z > 3.0)
         {
             //setPosY(-1.0f);
             setPosX(player.getPos().x);

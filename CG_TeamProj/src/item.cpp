@@ -1,7 +1,7 @@
 #include "item.h"
 #include "player.h"
 #include "gameWorld.h"
-
+#include "camera.h"
 #include "stb_image.h"
 
 #ifndef __ITEM_STATIC__
@@ -20,6 +20,7 @@ unsigned int Item::texture = -1;
 
 extern Player player;
 extern GameWorld gameWorld;
+extern Camera camera;
 
 Item::Item(float posZ, float revolutionZ)
 {
@@ -151,7 +152,12 @@ void Item::collision()
         if (abs(revolution.z - player.getRevolution().z) < 30 || abs(revolution.z + 360.0f - player.getRevolution().z) < 30 || abs(revolution.z - 360.0f - player.getRevolution().z) < 30)
         {
             cout << "collision with Item" << endl;
+            if (!player.getProtectedMode())
+                camera.rolling(180.0f, 1);
             player.setProtectedMode(true);
+            camera.setFovy(60.0f);
+            camera.setEye(glm::vec3(0, 0, 0.4));
+            gameWorld.del_object(id);
         }
     }
 }
