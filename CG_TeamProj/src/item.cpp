@@ -37,7 +37,7 @@ Item::Item(float posZ, float revolutionZ)
         }
     }
     setPosY(-1.0f);
-    setPosZ(posZ);
+    setPosZ(-posZ);
     setRevolutionZ(revolutionZ);
 }
 
@@ -52,7 +52,7 @@ void Item::initTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("res/Earth.png", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("res/bg.jpg", &width, &height, &nrChannels, 0);
 
     if (data)
     {
@@ -106,7 +106,7 @@ void Item::render(GLuint shaderProgramID)
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 
     glBindVertexArray(vao);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, Item::texture);
 
     glDrawArrays(GL_TRIANGLES, 0, object);
 }

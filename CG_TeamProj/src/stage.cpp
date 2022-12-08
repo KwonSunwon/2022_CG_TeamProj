@@ -17,7 +17,6 @@ void Stage::makePattern(int patternNum)
     tempwall->initTexture();
     tempitem = new Item(0,0);
     tempitem->initTexture();
-    gameWorld.add_object(tempitem);
     switch (patternNum)
     {
     //격자모양
