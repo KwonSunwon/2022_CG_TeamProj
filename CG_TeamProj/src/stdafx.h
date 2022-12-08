@@ -37,4 +37,6 @@
 #pragma comment(lib, "winmm.lib")
 #include <mmsystem.h>
 
+#include <fmod.hpp>
+
 #endif

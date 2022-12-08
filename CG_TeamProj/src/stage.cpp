@@ -19,7 +19,7 @@ void Stage::makePattern(int patternNum)
     tempitem->initTexture();
     switch (patternNum)
     {
-    // ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½
+    // ï¿½ï¿½ï¿½Ú¸ï¿½ï¿?
     case 0:
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 9; ++i)
@@ -37,7 +37,7 @@ void Stage::makePattern(int patternNum)
             gameWorld.add_object(tempwall);
         }
         break;
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?
     case 1:
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 24; ++i)
@@ -78,7 +78,7 @@ void Stage::makePattern(int patternNum)
             gameWorld.add_object(tempwall);
         }
         break;
-    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿?
     case 3:
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 24; ++i)
@@ -89,7 +89,7 @@ void Stage::makePattern(int patternNum)
             gameWorld.add_object(tempwall);
         }
         break;
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
     case 4:
         cout << "make pattern case:" << patternNum << endl;
         for (int i = 0; i < 12; ++i)
