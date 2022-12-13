@@ -226,3 +226,7 @@ void Player::die()
         stages[nowStage]->init();
     }
 }
+int Player::getPlayerDieTimer()
+{
+    return dieTimer;
+}

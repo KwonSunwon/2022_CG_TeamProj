@@ -112,4 +112,5 @@ void NormalStage::draw()
 }
 void NormalStage::out()
 {
+    patterTime = 0;
 }

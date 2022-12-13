@@ -99,4 +99,5 @@ void EasyStage::draw()
 }
 void EasyStage::out()
 {
+    patterTime = 0;
 }

@@ -49,9 +49,9 @@ void HardStage::update()
 
     // Camera rolling test
     if(timer%300<150)
-        camera.rolling((timer%150*0.01+1.0f), -1); // angle, direction
+        camera.rolling((timer%150*0.01+0.4f), -1); // angle, direction
     else
-        camera.rolling((timer % 150 * 0.01+1.0f), 1);
+        camera.rolling((timer % 150 * 0.01+0.4f), 1);
 
     if (patterTime > 250)
     {
@@ -103,4 +103,5 @@ void HardStage::draw()
 }
 void HardStage::out()
 {
+    patterTime = 0;
 }
