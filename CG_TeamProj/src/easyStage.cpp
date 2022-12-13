@@ -20,7 +20,7 @@ extern BG backGround;
 void EasyStage::init()
 {
     cout << "easy Stage" << endl;
-    
+     
     backGround.initBuffer();
     backGround.initTexture();
     gameWorld.add_object(&backGround);
