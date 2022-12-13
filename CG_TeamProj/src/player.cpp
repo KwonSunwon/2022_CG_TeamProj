@@ -24,9 +24,9 @@ extern GameWorld gameWorld;
 extern int gameSpeed;
 extern SoundManager soundManager;
 extern Camera camera;
-extern vector<Stage*> stages;
+extern vector<Stage *> stages;
 extern int nowStage;
-extern StartStage* startStage;
+extern StartStage *startStage;
 
 Player::Player()
 {
@@ -57,7 +57,7 @@ void Player::initTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("res/Jupiter.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("res/Earth.png", &width, &height, &nrChannels, 0);
 
     // cout << "check image load" << endl;
     // cout << width << " " << height << " " << nrChannels << endl;
@@ -151,9 +151,9 @@ void Player::getEvent(unsigned char key, bool isDown)
 }
 void Player::setMoveLeft(bool in) { isMoveLeft = in; }
 void Player::setMoveRight(bool in) { isMoveRight = in; }
-void Player::setProtectedMode(bool in) 
-{ 
-    isProtectedMode = in; 
+void Player::setProtectedMode(bool in)
+{
+    isProtectedMode = in;
     if (in)
         protectTime = 0;
 }
@@ -167,8 +167,7 @@ void Player::updateItemTimer()
         {
             isProtectedMode = false;
             protectTime = 0;
-            
-            
+
             camera.rolling(180.0f, 1);
             camera.setFovy(45.0f);
             camera.setEye(glm::vec3(0, 0, 3.0));
@@ -205,11 +204,10 @@ void Player::collision()
         tempP->initBuffer();
         gameWorld.add_object(tempP);
     }
-    
+
     dieTimer++;
 
     soundManager.soundPlay(PLAYER_DESTROY);
-    
 }
 void Player::die()
 {
