@@ -149,6 +149,8 @@ void Item::move()
 
 void Item::collision()
 {
+    if (player.getPlayerDieTimer() != 0)
+        return;
     if (abs(pos.z) < 0.3)
     {
         if (abs(revolution.z - player.getRevolution().z) < 15 || abs(revolution.z + 360.0f - player.getRevolution().z) < 15 || abs(revolution.z - 360.0f - player.getRevolution().z) < 15)
