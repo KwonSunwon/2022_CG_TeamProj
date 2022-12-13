@@ -44,6 +44,7 @@ Wall::Wall(float posZ, float revolutionZ)
             uvs[i] = objReader.out_uvs[i];
         }
     }
+
     if (revolutionZ > 360.0f)
     {
         revolutionZ -= 360.0f;
@@ -133,7 +134,7 @@ void Wall::render(GLuint shaderProgramID)
     model = glm::rotate(model, glm::radians(rotate.y), glm::vec3(0, 1, 0));
     model = glm::rotate(model, glm::radians(rotate.x), glm::vec3(1, 0, 0));
     model = glm::rotate(model, glm::radians(rotate.z), glm::vec3(0, 0, 1));
-    model = glm::scale(model, glm::vec3(0.001, 0.001, 0.001));
+    model = glm::scale(model, glm::vec3(0.0015, 0.0015, 0.0015));
 
     glUniformMatrix4fv(glGetUniformLocation(shaderProgramID, "model"), 1, GL_FALSE, glm::value_ptr(model));
 

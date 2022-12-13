@@ -30,6 +30,13 @@ Menu *mainMenu;
 void StartStage::init()
 {
     cout << "StartStage" << endl;
+    cout << "Loading..." << endl;
+    Wall *wall = new Wall(0, 0);
+    wall->initBuffer();
+    wall->initTexture();
+    delete wall;
+    cout << "Complete!" << endl;
+
     mainMenu = new Menu();
     mainMenu->initBuffer();
     mainMenu->initTexture();
@@ -39,11 +46,6 @@ void StartStage::init()
         soundManager.soundPlay(BGM);
     }
     light.setAmbientLight(1.0);
-
-    Wall *wall = new Wall(0, 0);
-    wall->initBuffer();
-    wall->initTexture();
-    delete wall;
 }
 
 void StartStage::update()
