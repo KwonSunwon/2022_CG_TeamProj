@@ -124,10 +124,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Windows\System32;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt;C:\Windows\SysWOW64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Windows\System32;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt;C:\Windows\SysWOW64;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\x86;$(LibraryPath);$(ProjectDir)gl;$(ProjectDir)gl</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)gl</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -159,14 +160,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)/api/core/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/api/core/inc;$(ProjectDir)\gl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>;$(ProjectDir)api\core\lib;$(ProjectDir)api\studio\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)api\core\lib;$(ProjectDir)api\studio\lib;$(ProjectDir)gl</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(ProjectDir)api\core\lib\x86\fmod_vc.lib;$(ProjectDir)api\core\lib\x86\fmodL_vc.lib;$(ProjectDir)api\studio\lib\x86\fmodstudio_vc.lib;$(ProjectDir)api\studio\lib\x86\fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>glew32.lib freeglut.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
